@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg_shape"
+        android:layout_margin="@dimen/padding_xlarge">
+
+        <TextView
+            android:id="@+id/title_txt"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/half_round_shape"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:padding="@dimen/padding_large"
+            android:singleLine="true"
+            android:text="@string/select_location_title_txt"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+
+        <fragment
+            android:id="@+id/map_container"
+            class="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_txt"
+            android:layout_above="@+id/done_btn"/>
+
+        <Button
+            android:id="@+id/done_btn"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/padding_large"
+            android:singleLine="true"
+            android:text="@string/done_btn"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/map_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

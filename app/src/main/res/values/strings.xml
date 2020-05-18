@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">shoppament</string>
+
+    <string name="action_ok">Ok</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="title_error">Error!</string>
+    <string name="msg_upload_pictures_msg_error">You can not upload more than 5 pictures</string>
+    <string name="msg_error">Please try again you have error</string>
+    <string name="msg_network_error">No internet connection</string>
+    <string name="title_activity_registration">Shop-Keeper</string>
+
+    <string name="input_fields_hint_txt">All item marked with “*” are mandatory.</string>
+    <string name="shop_name_et">Shop Name*</string>
+    <string name="shop_type_et">Shop Type*</string>
+    <string name="shop_desc_et">Shop Description*. About the products sold and what kind of shop this is.</string>
+
+    <string name="shop_pictures_title_txt">Shop Pictures*</string>
+    <string name="upload_pictures_btn">Click Here to Upload Pics</string>
+
+    <string name="operational_time_title_txt">Operational Time*</string>
+    <string name="starting_time_et">Starting Time*</string>
+    <string name="ending_time_et">Ending Time*</string>
+
+    <string name="address_title_txt">Address*</string>
+    <string name="shop_door_number_et">Shop Door Number*</string>
+    <string name="apartment_street_name_et">Apartment/Street Name*</string>
+    <string name="pin_code_et">PIN Code*</string>
+    <string name="country_txt">Country*</string>
+    <string name="state_txt">State*</string>
+    <string name="city_txt">City*</string>
+
+    <string name="average_time_title_txt">Average Time Taken by a person for purchasing at your shop* hh:mm</string>
+    <string name="average_time_space_txt">:</string>
+
+    <string name="capacity_title_txt">Capacity*</string>
+    <string name="inside_capacity_et">Inside Capacity*</string>
+    <string name="inside_capacity_desc_txt">Inside Capacity is the capacity of your store to hold visitors inside depending on the size. For e.g., for 5*3 ft store walk space capacity, the Inside capacity will be 1 per slot. Min is 1.</string>
+    <string name="outside_capacity_et">Outside Capacity*</string>
+    <string name="outside_capacity_desc_txt">Outside Capacity is the capacity of your store Physical queue depending on the size. For e.g., a store has 5*3 ft outside space, the Outside capacity will be 2 per slot. Min is 1.</string>
+    <string name="total_capacity_title_txt">Total Capacity:</string>
+    <string name="per_slot_time_title_txt">Per Slot Time:</string>
+    <string name="capacity_equation_desc_txt">Inside Capacity + Outside Capacity = Total Capacity.Per Slot Time = Total Capacity * Average Time Take per Person.</string>
+    <string name="reset_slot_timings_desc_txt">Click on the below reset button to view the slots.</string>
+    <string name="reset_slot_timings_btn">Reset Slot Timings</string>
+
+    <string name="slot_traffic_closing_time_desc_txt">Shows one less slot to stop traffic at closing time.</string>
+    <string name="available_slot_timings_title_txt">Shop Available Slot Timings:</string>
+    <string name="map_location_title_txt">Google Map Location*</string>
+    <string name="select_location_btn">Click Here to Select Your Location</string>
+    <string name="change_location_btn">Click Here to Change Your Location</string>
+
+    <string name="phone_code_country_txt">+91</string>
+    <string name="phone_number_txt">Phone Number</string>
+    <string name="send_otp_btn">Send OTP</string>
+    <string name="submit_btn">Submit</string>
+    <string name="otp_et">OTP*</string>
+    <string name="email_id_et">Email ID (optional)</string>
+    <string name="gst_number_et">GST Number (optional)</string>
+    <string name="warning_verified_message_1_txt">Warning / Verified Message 1</string>
+    <string name="warning_verified_message_2_txt">Warning / Verified Message 2</string>
+
+    <string name="upload_options_title_txt">Upload Options</string>
+    <string name="camera_option_txt">Camera</string>
+    <string name="device_option_txt">Upload from Device.</string>
+    <string name="select_location_title_txt">Select Location</string>
+    <string name="done_btn">Done</string>
+    <string name="close_btn">Close</string>
+
+    <string name="time_hours">hrs</string>
+    <string name="time_minutes">mins</string>
+    <string name="title_slot">Slot</string>
+    <string name="title_to">to</string>
+
+    <!--    <string name="google_maps_key">AIzaSyAKEtCq48OPf0U6TKZslDh8qKnvFcf_AU0</string>-->
+
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>

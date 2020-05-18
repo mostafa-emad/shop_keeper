@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    tools:ignore="MissingDefaultResource">
+
+    <TextView
+        android:id="@+id/upload_options_title_txt"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/half_round_shape"
+        android:gravity="start"
+        android:padding="@dimen/padding_large"
+        android:singleLine="true"
+        android:text="@string/upload_options_title_txt"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/camera_option_txt"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBG"
+        android:gravity="start"
+        android:padding="@dimen/padding_large"
+        android:singleLine="true"
+        android:text="@string/camera_option_txt"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_options_title_txt" />
+
+    <TextView
+        android:id="@+id/device_option_txt"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBG"
+        android:gravity="start"
+        android:padding="@dimen/padding_large"
+        android:singleLine="true"
+        android:text="@string/device_option_txt"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera_option_txt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

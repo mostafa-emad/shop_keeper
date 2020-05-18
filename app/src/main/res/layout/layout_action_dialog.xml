@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/padding_small"
+    android:background="@drawable/input_round_border"
+    android:gravity="center"
+    android:padding="@dimen/padding_medium"
+    android:visibility="visible"
+    tools:ignore="MissingDefaultResource">
+
+    <TextView
+        android:id="@+id/msg_txt"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_small"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:lines="3"
+        android:maxLines="50"
+        android:padding="@dimen/padding_medium"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ok_txt"
+        style="@style/Base.TextAppearance.AppCompat.Small"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/msg_txt"
+        android:layout_margin="@dimen/padding_large"
+        android:background="@drawable/btn_round_shape"
+        android:gravity="center"
+        android:text="@string/action_ok"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/msg_txt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

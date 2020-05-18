@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.activity.registration.RegistrationActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".ui.activity.registration.RegistrationActivity"
+            tools:showIn="@layout/activity_registration">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_large"
+                android:layout_marginEnd="@dimen/padding_large"
+                android:layout_marginBottom="@dimen/padding_large"
+                android:paddingBottom="@dimen/padding_xlarge"
+                android:padding="@dimen/padding_medium">
+
+                <TextView
+                    android:id="@+id/input_fields_hint_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/input_fields_hint_txt" />
+
+                <EditText
+                    android:id="@+id/shop_name_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:hint="@string/shop_name_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:gravity="start"
+                    android:inputType="textPersonName"
+                    android:lines="1"
+                    android:textColor="@color/colorText"
+                    android:background="@drawable/et_round_border"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/shop_desc_et"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/input_fields_hint_txt" />
+
+                <TextView
+                    android:id="@+id/shop_type_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorText"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawablePadding="@dimen/padding_small"
+                    android:onClick="showShopTypeList"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/shop_type_et"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shop_name_et" />
+
+                <EditText
+                    android:id="@+id/shop_desc_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="4"
+                    android:lines="4"
+                    android:gravity="start|top"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/starting_time_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorText"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/shop_desc_et"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shop_type_txt"
+                    android:importantForAutofill="no" />
+
+                <TextView
+                    android:id="@+id/shop_pictures_title_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorText"
+                    android:layout_margin="@dimen/padding_medium"
+                    android:gravity="start"
+                    android:textStyle="bold"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shop_desc_et"
+                    android:text="@string/shop_pictures_title_txt" />
+
+                <Button
+                    android:id="@+id/upload_pictures_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:textColor="@color/colorText"
+                    android:background="@drawable/btn_bg_shape"
+                    android:text="@string/upload_pictures_btn"
+                    android:textAllCaps="false"
+                    android:onClick="clickToUploadPics"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shop_pictures_title_txt" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/pictures_recycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:layout_marginEnd="@dimen/padding_xlarge"
+                    android:padding="@dimen/padding_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/upload_pictures_btn"
+                    tools:ignore="UnusedAttribute" />
+
+                <TextView
+                    android:id="@+id/operational_time_title_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_medium"
+                    android:gravity="start"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pictures_recycler"
+                    android:text="@string/operational_time_title_txt" />
+
+<!--                <EditText-->
+<!--                    android:id="@+id/starting_time_et"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    style="@style/TextAppearance.AppCompat.Medium"-->
+<!--                    android:layout_marginTop="@dimen/padding_large"-->
+<!--                    android:padding="@dimen/padding_medium"-->
+<!--                    android:inputType="time"-->
+<!--                    android:onClick="getStartingTime"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:imeOptions="actionNext"-->
+<!--                    android:nextFocusDown="@+id/ending_time_et"-->
+<!--                    android:textColor="@color/colorText"-->
+<!--                    android:background="@drawable/et_round_border"-->
+<!--                    android:hint="@string/starting_time_et"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/operational_time_title_txt" />-->
+
+                <com.shoppament.utils.view.TimeEditText
+                    android:id="@+id/starting_time_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/ending_time_et"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/operational_time_title_txt" />
+
+                <com.shoppament.utils.view.TimeEditText
+                    android:id="@+id/ending_time_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/shop_door_number_et"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/starting_time_et" />
+
+<!--                <EditText-->
+<!--                    android:id="@+id/ending_time_et"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    style="@style/TextAppearance.AppCompat.Medium"-->
+<!--                    android:layout_marginTop="@dimen/padding_large"-->
+<!--                    android:padding="@dimen/padding_medium"-->
+<!--                    android:onClick="getEndingTime"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:imeOptions="actionNext"-->
+<!--                    android:nextFocusDown="@+id/shop_door_number_et"-->
+<!--                    android:textColor="@color/colorText"-->
+<!--                    android:background="@drawable/et_round_border"-->
+<!--                    android:hint="@string/ending_time_et"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/starting_time_et" />-->
+
+                <TextView
+                    android:id="@+id/address_title_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_medium"
+                    android:gravity="start"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ending_time_et"
+                    android:text="@string/address_title_txt" />
+
+                <EditText
+                    android:id="@+id/shop_door_number_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/apartment_street_name_et"
+                    android:textColor="@color/colorText"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/shop_door_number_et"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/address_title_txt" />
+
+                <EditText
+                    android:id="@+id/apartment_street_name_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/pin_code_et"
+                    android:textColor="@color/colorText"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/apartment_street_name_et"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shop_door_number_et" />
+
+                <EditText
+                    android:id="@+id/pin_code_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/average_time_hh_et"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/pin_code_et"
+                    android:textColor="@color/colorText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/apartment_street_name_et" />
+
+                <TextView
+                    android:id="@+id/country_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawablePadding="@dimen/padding_small"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/country_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pin_code_et" />
+
+                <TextView
+                    android:id="@+id/state_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawablePadding="@dimen/padding_small"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/state_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/country_txt" />
+
+                <TextView
+                    android:id="@+id/city_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawablePadding="@dimen/padding_small"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/city_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/state_txt" />
+
+                <TextView
+                    android:id="@+id/average_time_title_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorText"
+                    android:layout_margin="@dimen/padding_medium"
+                    android:gravity="start"
+                    android:textStyle="bold"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/city_txt"
+                    android:text="@string/average_time_title_txt" />
+
+                <EditText
+                    android:id="@+id/average_time_hh_et"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:inputType="time"
+                    android:onClick="getTime"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:layout_marginStart="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/average_time_title_txt" />
+
+                <TextView
+                    android:id="@+id/average_time_space_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_medium"
+                    android:gravity="center"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintStart_toEndOf="@+id/average_time_hh_et"
+                    app:layout_constraintTop_toTopOf="@+id/average_time_hh_et"
+                    app:layout_constraintBottom_toBottomOf="@+id/average_time_hh_et"
+                    android:text="@string/average_time_space_txt" />
+
+                <EditText
+                    android:id="@+id/average_time_mm_et"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="time"
+                    android:singleLine="true"
+                    android:onClick="getTime"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:layout_marginStart="@dimen/padding_medium"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    app:layout_constraintStart_toEndOf="@+id/average_time_space_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/average_time_title_txt" />
+
+
+                <TextView
+                    android:id="@+id/capacity_title_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_medium"
+                    android:gravity="start"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/average_time_hh_et"
+                    android:text="@string/capacity_title_txt" />
+
+                <EditText
+                    android:id="@+id/inside_capacity_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/outside_capacity_et"
+                    android:textColor="@color/colorText"
+                    android:hint="@string/inside_capacity_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/capacity_title_txt" />
+
+                <TextView
+                    android:id="@+id/inside_capacity_desc_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_small"
+                    android:gravity="start"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inside_capacity_et"
+                    android:text="@string/inside_capacity_desc_txt" />
+
+                <EditText
+                    android:id="@+id/outside_capacity_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/phone_number_et"
+                    android:textColor="@color/colorText"
+                    android:hint="@string/outside_capacity_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inside_capacity_desc_txt" />
+
+                <TextView
+                    android:id="@+id/outside_capacity_desc_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_small"
+                    android:gravity="start"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/outside_capacity_et"
+                    android:text="@string/outside_capacity_desc_txt" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/total_capacity_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/outside_capacity_desc_txt">
+
+                    <TextView
+                        android:id="@+id/total_capacity_title_txt"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_medium"
+                        android:gravity="start"
+                        android:text="@string/total_capacity_title_txt"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/per_slot_time_title_txt"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_medium"
+                        android:gravity="start"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@string/per_slot_time_title_txt"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/total_capacity_title_txt" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent=".6" />
+
+                    <TextView
+                        android:id="@+id/total_capacity_txt"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_medium"
+                        android:gravity="start"
+                        tools:text="0"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        app:layout_constraintStart_toEndOf="@+id/guideline"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/per_slot_time_txt"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_medium"
+                        android:gravity="start"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        tools:text="0hrs 0mins"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/guideline"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/total_capacity_title_txt" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/capacity_equation_desc_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_small"
+                    android:gravity="start"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/total_capacity_layout"
+                    android:text="@string/capacity_equation_desc_txt" />
+
+                <TextView
+                    android:id="@+id/reset_slot_timings_desc_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_small"
+                    android:gravity="center"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/capacity_equation_desc_txt"
+                    android:text="@string/reset_slot_timings_desc_txt" />
+
+                <Button
+                    android:id="@+id/reset_slot_timings_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:onClick="restSlotTimings"
+                    android:textColor="@color/colorText"
+                    android:background="@drawable/btn_bg_shape"
+                    android:text="@string/reset_slot_timings_btn"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reset_slot_timings_desc_txt" />
+
+                <TextView
+                    android:id="@+id/slot_traffic_closing_time_desc_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_small"
+                    android:gravity="center"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reset_slot_timings_btn"
+                    android:text="@string/slot_traffic_closing_time_desc_txt" />
+
+                <TextView
+                    android:id="@+id/available_slot_timings_title_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:gravity="start"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/slot_traffic_closing_time_desc_txt"
+                    android:text="@string/available_slot_timings_title_txt" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/available_slot_timings_recycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_margin="@dimen/padding_medium"
+                    android:padding="@dimen/padding_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/available_slot_timings_title_txt"
+                    tools:ignore="UnusedAttribute" />
+
+                <TextView
+                    android:id="@+id/map_location_title_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:gravity="start"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/available_slot_timings_recycler"
+                    android:text="@string/map_location_title_txt" />
+
+                <Button
+                    android:id="@+id/select_location_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:onClick="getLocation"
+                    android:textColor="@color/colorText"
+                    android:background="@drawable/btn_bg_shape"
+                    android:text="@string/select_location_btn"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/map_location_title_txt" />
+
+                <TextView
+                    android:id="@+id/phone_code_country_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/colorText"
+                    android:text="@string/phone_code_country_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/select_location_btn" />
+
+                <EditText
+                    android:id="@+id/phone_number_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/otp_et"
+                    android:textColor="@color/colorText"
+                    android:hint="@string/phone_number_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginStart="@dimen/padding_medium"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    app:layout_constraintStart_toEndOf="@+id/phone_code_country_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/phone_code_country_txt"
+                    app:layout_constraintBottom_toBottomOf="@+id/phone_code_country_txt" />
+
+                <Button
+                    android:id="@+id/send_otp_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:textColor="@color/colorText"
+                    android:background="@drawable/btn_bg_shape"
+                    android:text="@string/send_otp_btn"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_number_et" />
+
+                <EditText
+                    android:id="@+id/otp_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/email_id_et"
+                    android:textColor="@color/colorText"
+                    android:hint="@string/otp_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/send_otp_btn" />
+
+                <TextView
+                    android:id="@+id/warning_verified_message_1_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_small"
+                    android:gravity="start"
+                    tools:visibility="visible"
+                    android:visibility="gone"
+                    android:textColor="@color/colorWarring"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/otp_et"
+                    android:text="@string/warning_verified_message_1_txt" />
+
+                <EditText
+                    android:id="@+id/email_id_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/gst_number_et"
+                    android:textColor="@color/colorText"
+                    android:hint="@string/email_id_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/warning_verified_message_1_txt" />
+
+                <EditText
+                    android:id="@+id/gst_number_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
+                    android:textColor="@color/colorText"
+                    android:hint="@string/gst_number_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/et_round_border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/email_id_et" />
+
+                <Button
+                    android:id="@+id/submit_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:padding="@dimen/padding_medium"
+                    android:onClick="submitTheRegistration"
+                    android:textColor="@color/colorText"
+                    android:background="@drawable/btn_bg_shape"
+                    android:text="@string/submit_btn"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gst_number_et" />
+
+                <TextView
+                    android:id="@+id/warning_verified_message_2_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_small"
+                    android:gravity="start"
+                    tools:visibility="visible"
+                    android:visibility="gone"
+                    android:textColor="@color/colorWarring"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/submit_btn"
+                    android:text="@string/warning_verified_message_2_txt" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!--        <include layout="@layout/content_registration" android:id="@+id/content_layout"/>-->
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
