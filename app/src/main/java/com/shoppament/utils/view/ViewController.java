@@ -286,7 +286,7 @@ public class ViewController {
         // some other visual settings for popup window
         popupWindow.setFocusable(true);
 //        popupWindow.setBackgroundDrawable(activity.getResources().getDrawable(R.drawable.popup_background));
-        popupWindow.setWidth(pxFromDp(activity,100));
+        popupWindow.setWidth(pxFromDp(activity,300));
         popupWindow.setBackgroundDrawable(activity.getResources().getDrawable(R.drawable.popup_bg));
 //        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);

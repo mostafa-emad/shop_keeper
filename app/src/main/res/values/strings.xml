@@ -71,6 +71,11 @@
     <string name="title_slot">Slot</string>
     <string name="title_to">to</string>
 
+    <string name="error_empty_fields">Please check empty fields</string>
+    <string name="error_empty_pictures">Please upload pictures</string>
+    <string name="error_wrong_phone_number">Please enter vaild phone number</string>
+    <string name="error_wrong_email">Please enter vaild Email ID</string>
+
     <!--    <string name="google_maps_key">AIzaSyAKEtCq48OPf0U6TKZslDh8qKnvFcf_AU0</string>-->
 
     <string name="large_text">

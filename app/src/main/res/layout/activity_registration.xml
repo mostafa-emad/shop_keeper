@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.shoppament.ui.activity.registration.RegistrationViewModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -53,104 +57,104 @@
                 android:layout_marginStart="@dimen/padding_large"
                 android:layout_marginEnd="@dimen/padding_large"
                 android:layout_marginBottom="@dimen/padding_large"
-                android:paddingBottom="@dimen/padding_xlarge"
-                android:padding="@dimen/padding_medium">
+                android:padding="@dimen/padding_medium"
+                android:paddingBottom="@dimen/padding_xlarge">
 
                 <TextView
                     android:id="@+id/input_fields_hint_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
+                    android:text="@string/input_fields_hint_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="@string/input_fields_hint_txt" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/shop_name_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
-                    android:hint="@string/shop_name_et"
-                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@drawable/et_round_border"
                     android:gravity="start"
+                    android:hint="@string/shop_name_et"
+                    android:imeOptions="actionNext"
                     android:inputType="textPersonName"
                     android:lines="1"
-                    android:textColor="@color/colorText"
-                    android:background="@drawable/et_round_border"
-                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/shop_desc_et"
+                    android:padding="@dimen/padding_medium"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/input_fields_hint_txt" />
 
                 <TextView
                     android:id="@+id/shop_type_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:lines="1"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorText"
                     android:layout_marginTop="@dimen/padding_large"
+                    android:background="@drawable/et_round_border"
                     android:drawableEnd="@drawable/ic_arrow_drop_down"
                     android:drawablePadding="@dimen/padding_small"
+                    android:hint="@string/shop_type_et"
+                    android:lines="1"
                     android:onClick="showShopTypeList"
                     android:padding="@dimen/padding_medium"
-                    android:background="@drawable/et_round_border"
-                    android:hint="@string/shop_type_et"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/shop_name_et" />
 
                 <EditText
                     android:id="@+id/shop_desc_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:maxLines="4"
-                    android:lines="4"
-                    android:gravity="start|top"
-                    android:imeOptions="actionNext"
-                    android:nextFocusDown="@+id/starting_time_et"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorText"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
                     android:background="@drawable/et_round_border"
+                    android:gravity="start|top"
                     android:hint="@string/shop_desc_et"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:lines="4"
+                    android:maxLines="4"
+                    android:nextFocusDown="@+id/starting_time_et"
+                    android:padding="@dimen/padding_medium"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/shop_type_txt"
-                    android:importantForAutofill="no" />
+                    app:layout_constraintTop_toBottomOf="@+id/shop_type_txt" />
 
                 <TextView
                     android:id="@+id/shop_pictures_title_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorText"
                     android:layout_margin="@dimen/padding_medium"
                     android:gravity="start"
+                    android:text="@string/shop_pictures_title_txt"
+                    android:textColor="@color/colorText"
                     android:textStyle="bold"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/shop_desc_et"
-                    android:text="@string/shop_pictures_title_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/shop_desc_et" />
 
                 <Button
                     android:id="@+id/upload_pictures_btn"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
-                    android:textColor="@color/colorText"
                     android:background="@drawable/btn_bg_shape"
+                    android:onClick="clickToUploadPics"
+                    android:padding="@dimen/padding_medium"
                     android:text="@string/upload_pictures_btn"
                     android:textAllCaps="false"
-                    android:onClick="clickToUploadPics"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/shop_pictures_title_txt" />
@@ -159,9 +163,9 @@
                     android:id="@+id/pictures_recycler"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
                     android:layout_marginTop="@dimen/padding_large"
                     android:layout_marginEnd="@dimen/padding_xlarge"
+                    android:nestedScrollingEnabled="false"
                     android:padding="@dimen/padding_medium"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -170,137 +174,113 @@
 
                 <TextView
                     android:id="@+id/operational_time_title_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_medium"
                     android:gravity="start"
-                    android:textStyle="bold"
+                    android:text="@string/operational_time_title_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pictures_recycler"
-                    android:text="@string/operational_time_title_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/pictures_recycler" />
 
-<!--                <EditText-->
-<!--                    android:id="@+id/starting_time_et"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    style="@style/TextAppearance.AppCompat.Medium"-->
-<!--                    android:layout_marginTop="@dimen/padding_large"-->
-<!--                    android:padding="@dimen/padding_medium"-->
-<!--                    android:inputType="time"-->
-<!--                    android:onClick="getStartingTime"-->
-<!--                    android:singleLine="true"-->
-<!--                    android:imeOptions="actionNext"-->
-<!--                    android:nextFocusDown="@+id/ending_time_et"-->
-<!--                    android:textColor="@color/colorText"-->
-<!--                    android:background="@drawable/et_round_border"-->
-<!--                    android:hint="@string/starting_time_et"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/operational_time_title_txt" />-->
-
-                <com.shoppament.utils.view.TimeEditText
+                <TextView
                     android:id="@+id/starting_time_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:imeOptions="actionNext"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/starting_time_et"
                     android:nextFocusDown="@+id/ending_time_et"
+                    android:onClick="getStartingTime"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/operational_time_title_txt" />
 
-                <com.shoppament.utils.view.TimeEditText
+
+                <TextView
                     android:id="@+id/ending_time_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:imeOptions="actionNext"
+                    android:background="@drawable/et_round_border"
+                    android:hint="@string/ending_time_et"
                     android:nextFocusDown="@+id/shop_door_number_et"
+                    android:onClick="getEndingTime"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/starting_time_et" />
 
-<!--                <EditText-->
-<!--                    android:id="@+id/ending_time_et"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    style="@style/TextAppearance.AppCompat.Medium"-->
-<!--                    android:layout_marginTop="@dimen/padding_large"-->
-<!--                    android:padding="@dimen/padding_medium"-->
-<!--                    android:onClick="getEndingTime"-->
-<!--                    android:singleLine="true"-->
-<!--                    android:imeOptions="actionNext"-->
-<!--                    android:nextFocusDown="@+id/shop_door_number_et"-->
-<!--                    android:textColor="@color/colorText"-->
-<!--                    android:background="@drawable/et_round_border"-->
-<!--                    android:hint="@string/ending_time_et"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/starting_time_et" />-->
-
                 <TextView
                     android:id="@+id/address_title_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_medium"
                     android:gravity="start"
-                    android:textStyle="bold"
+                    android:text="@string/address_title_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ending_time_et"
-                    android:text="@string/address_title_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/ending_time_et" />
 
                 <EditText
                     android:id="@+id/shop_door_number_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
-                    android:singleLine="true"
-                    android:imeOptions="actionNext"
-                    android:nextFocusDown="@+id/apartment_street_name_et"
-                    android:textColor="@color/colorText"
                     android:background="@drawable/et_round_border"
                     android:hint="@string/shop_door_number_et"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/apartment_street_name_et"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/address_title_txt" />
 
                 <EditText
                     android:id="@+id/apartment_street_name_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
-                    android:singleLine="true"
-                    android:imeOptions="actionNext"
-                    android:nextFocusDown="@+id/pin_code_et"
-                    android:textColor="@color/colorText"
                     android:background="@drawable/et_round_border"
                     android:hint="@string/apartment_street_name_et"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/pin_code_et"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/shop_door_number_et" />
 
                 <EditText
                     android:id="@+id/pin_code_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
-                    android:singleLine="true"
-                    android:imeOptions="actionNext"
-                    android:nextFocusDown="@+id/average_time_hh_et"
                     android:background="@drawable/et_round_border"
                     android:hint="@string/pin_code_et"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/average_time_hh_et"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
                     android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -308,193 +288,191 @@
 
                 <TextView
                     android:id="@+id/country_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
+                    android:background="@drawable/et_round_border"
                     android:drawableEnd="@drawable/ic_arrow_drop_down"
                     android:drawablePadding="@dimen/padding_small"
-                    android:padding="@dimen/padding_medium"
-                    android:background="@drawable/et_round_border"
                     android:hint="@string/country_txt"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pin_code_et" />
 
                 <TextView
                     android:id="@+id/state_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
+                    android:background="@drawable/et_round_border"
                     android:drawableEnd="@drawable/ic_arrow_drop_down"
                     android:drawablePadding="@dimen/padding_small"
-                    android:padding="@dimen/padding_medium"
-                    android:background="@drawable/et_round_border"
                     android:hint="@string/state_txt"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/country_txt" />
 
                 <TextView
                     android:id="@+id/city_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
+                    android:background="@drawable/et_round_border"
                     android:drawableEnd="@drawable/ic_arrow_drop_down"
                     android:drawablePadding="@dimen/padding_small"
-                    android:padding="@dimen/padding_medium"
-                    android:background="@drawable/et_round_border"
                     android:hint="@string/city_txt"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/state_txt" />
 
                 <TextView
                     android:id="@+id/average_time_title_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorText"
                     android:layout_margin="@dimen/padding_medium"
                     android:gravity="start"
+                    android:text="@string/average_time_title_txt"
+                    android:textColor="@color/colorText"
                     android:textStyle="bold"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/city_txt"
-                    android:text="@string/average_time_title_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/city_txt" />
 
-                <EditText
+                <TextView
                     android:id="@+id/average_time_hh_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:inputType="time"
-                    android:onClick="getTime"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_marginTop="@dimen/padding_large"
                     android:layout_marginStart="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
+                    android:layout_marginTop="@dimen/padding_large"
                     android:background="@drawable/et_round_border"
+                    android:gravity="center"
+                    android:onClick="getTime"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/average_time_title_txt" />
 
                 <TextView
                     android:id="@+id/average_time_space_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_medium"
                     android:gravity="center"
+                    android:text="@string/average_time_space_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    app:layout_constraintStart_toEndOf="@+id/average_time_hh_et"
-                    app:layout_constraintTop_toTopOf="@+id/average_time_hh_et"
                     app:layout_constraintBottom_toBottomOf="@+id/average_time_hh_et"
-                    android:text="@string/average_time_space_txt" />
+                    app:layout_constraintStart_toEndOf="@+id/average_time_hh_et"
+                    app:layout_constraintTop_toTopOf="@+id/average_time_hh_et" />
 
-                <EditText
+                <TextView
                     android:id="@+id/average_time_mm_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:inputType="time"
-                    android:singleLine="true"
-                    android:onClick="getTime"
-                    android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_marginTop="@dimen/padding_large"
                     android:layout_marginStart="@dimen/padding_medium"
-                    android:padding="@dimen/padding_medium"
+                    android:layout_marginTop="@dimen/padding_large"
                     android:background="@drawable/et_round_border"
+                    android:gravity="center"
+                    android:onClick="getTime"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintStart_toEndOf="@+id/average_time_space_txt"
                     app:layout_constraintTop_toBottomOf="@+id/average_time_title_txt" />
 
 
                 <TextView
                     android:id="@+id/capacity_title_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_medium"
                     android:gravity="start"
-                    android:textStyle="bold"
+                    android:text="@string/capacity_title_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/average_time_hh_et"
-                    android:text="@string/capacity_title_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/average_time_hh_et" />
 
                 <EditText
                     android:id="@+id/inside_capacity_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:imeOptions="actionNext"
-                    android:nextFocusDown="@+id/outside_capacity_et"
-                    android:textColor="@color/colorText"
-                    android:hint="@string/inside_capacity_et"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
                     android:background="@drawable/et_round_border"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="start"
+                    android:hint="@string/inside_capacity_et"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:nextFocusDown="@+id/outside_capacity_et"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/capacity_title_txt" />
 
                 <TextView
                     android:id="@+id/inside_capacity_desc_txt"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_small"
                     android:gravity="start"
+                    android:text="@string/inside_capacity_desc_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/inside_capacity_et"
-                    android:text="@string/inside_capacity_desc_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/inside_capacity_et" />
 
                 <EditText
                     android:id="@+id/outside_capacity_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:imeOptions="actionNext"
-                    android:nextFocusDown="@+id/phone_number_et"
-                    android:textColor="@color/colorText"
-                    android:hint="@string/outside_capacity_et"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
                     android:background="@drawable/et_round_border"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="start"
+                    android:hint="@string/outside_capacity_et"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:nextFocusDown="@+id/phone_number_et"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/inside_capacity_desc_txt" />
 
                 <TextView
                     android:id="@+id/outside_capacity_desc_txt"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_small"
                     android:gravity="start"
+                    android:text="@string/outside_capacity_desc_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/outside_capacity_et"
-                    android:text="@string/outside_capacity_desc_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/outside_capacity_et" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/total_capacity_layout"
@@ -510,12 +488,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/padding_medium"
+                        android:ellipsize="end"
                         android:gravity="start"
+                        android:singleLine="true"
                         android:text="@string/total_capacity_title_txt"
                         android:textColor="@color/colorText"
                         android:textStyle="bold"
-                        android:ellipsize="end"
-                        android:singleLine="true"
                         app:layout_constraintEnd_toStartOf="@+id/guideline"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -526,8 +504,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/padding_medium"
-                        android:gravity="start"
                         android:ellipsize="end"
+                        android:gravity="start"
                         android:singleLine="true"
                         android:text="@string/per_slot_time_title_txt"
                         android:textColor="@color/colorText"
@@ -549,15 +527,15 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/padding_medium"
+                        android:ellipsize="end"
                         android:gravity="start"
-                        tools:text="0"
+                        android:singleLine="true"
                         android:textColor="@color/colorText"
                         android:textStyle="bold"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        app:layout_constraintStart_toEndOf="@+id/guideline"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toEndOf="@+id/guideline"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="0" />
 
                     <TextView
                         android:id="@+id/per_slot_time_txt"
@@ -565,94 +543,94 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/padding_medium"
-                        android:gravity="start"
                         android:ellipsize="end"
+                        android:gravity="start"
                         android:singleLine="true"
-                        tools:text="0hrs 0mins"
                         android:textColor="@color/colorText"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@+id/guideline"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/total_capacity_title_txt" />
+                        app:layout_constraintStart_toEndOf="@+id/guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/total_capacity_title_txt"
+                        tools:text="0hrs 0mins" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/capacity_equation_desc_txt"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_small"
                     android:gravity="start"
+                    android:text="@string/capacity_equation_desc_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/total_capacity_layout"
-                    android:text="@string/capacity_equation_desc_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/total_capacity_layout" />
 
                 <TextView
                     android:id="@+id/reset_slot_timings_desc_txt"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_small"
                     android:gravity="center"
+                    android:text="@string/reset_slot_timings_desc_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/capacity_equation_desc_txt"
-                    android:text="@string/reset_slot_timings_desc_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/capacity_equation_desc_txt" />
 
                 <Button
                     android:id="@+id/reset_slot_timings_btn"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
-                    android:onClick="restSlotTimings"
-                    android:textColor="@color/colorText"
                     android:background="@drawable/btn_bg_shape"
+                    android:onClick="restSlotTimings"
+                    android:padding="@dimen/padding_medium"
                     android:text="@string/reset_slot_timings_btn"
                     android:textAllCaps="false"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/reset_slot_timings_desc_txt" />
 
                 <TextView
                     android:id="@+id/slot_traffic_closing_time_desc_txt"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_small"
                     android:gravity="center"
+                    android:text="@string/slot_traffic_closing_time_desc_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/reset_slot_timings_btn"
-                    android:text="@string/slot_traffic_closing_time_desc_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/reset_slot_timings_btn" />
 
                 <TextView
                     android:id="@+id/available_slot_timings_title_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_large"
                     android:gravity="start"
-                    android:textStyle="bold"
+                    android:text="@string/available_slot_timings_title_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/slot_traffic_closing_time_desc_txt"
-                    android:text="@string/available_slot_timings_title_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/slot_traffic_closing_time_desc_txt" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/available_slot_timings_recycler"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
                     android:layout_margin="@dimen/padding_medium"
+                    android:nestedScrollingEnabled="false"
                     android:padding="@dimen/padding_medium"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -661,184 +639,184 @@
 
                 <TextView
                     android:id="@+id/map_location_title_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_large"
                     android:gravity="start"
-                    android:textStyle="bold"
+                    android:text="@string/map_location_title_txt"
                     android:textColor="@color/colorText"
-                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/available_slot_timings_recycler"
-                    android:text="@string/map_location_title_txt" />
+                    app:layout_constraintTop_toBottomOf="@+id/available_slot_timings_recycler" />
 
                 <Button
                     android:id="@+id/select_location_btn"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
-                    android:onClick="getLocation"
-                    android:textColor="@color/colorText"
                     android:background="@drawable/btn_bg_shape"
+                    android:onClick="getLocation"
+                    android:padding="@dimen/padding_medium"
                     android:text="@string/select_location_btn"
                     android:textAllCaps="false"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/map_location_title_txt" />
 
                 <TextView
                     android:id="@+id/phone_code_country_txt"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:textColor="@color/colorText"
-                    android:text="@string/phone_code_country_txt"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
                     android:background="@drawable/et_round_border"
+                    android:gravity="start"
+                    android:padding="@dimen/padding_medium"
+                    android:text="@string/phone_code_country_txt"
+                    android:textColor="@color/colorText"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/select_location_btn" />
 
                 <EditText
                     android:id="@+id/phone_number_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:imeOptions="actionNext"
-                    android:nextFocusDown="@+id/otp_et"
-                    android:textColor="@color/colorText"
-                    android:hint="@string/phone_number_txt"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginStart="@dimen/padding_medium"
-                    android:padding="@dimen/padding_medium"
                     android:background="@drawable/et_round_border"
-                    app:layout_constraintStart_toEndOf="@+id/phone_code_country_txt"
+                    android:gravity="start"
+                    android:hint="@string/phone_number_txt"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:nextFocusDown="@+id/otp_et"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
+                    app:layout_constraintBottom_toBottomOf="@+id/phone_code_country_txt"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/phone_code_country_txt"
-                    app:layout_constraintBottom_toBottomOf="@+id/phone_code_country_txt" />
+                    app:layout_constraintStart_toEndOf="@+id/phone_code_country_txt"
+                    app:layout_constraintTop_toTopOf="@+id/phone_code_country_txt" />
 
                 <Button
                     android:id="@+id/send_otp_btn"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
-                    android:textColor="@color/colorText"
                     android:background="@drawable/btn_bg_shape"
+                    android:padding="@dimen/padding_medium"
                     android:text="@string/send_otp_btn"
                     android:textAllCaps="false"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/phone_number_et" />
 
                 <EditText
                     android:id="@+id/otp_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:imeOptions="actionNext"
-                    android:nextFocusDown="@+id/email_id_et"
-                    android:textColor="@color/colorText"
-                    android:hint="@string/otp_et"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
                     android:background="@drawable/et_round_border"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="start"
+                    android:hint="@string/otp_et"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:nextFocusDown="@+id/email_id_et"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/send_otp_btn" />
 
                 <TextView
                     android:id="@+id/warning_verified_message_1_txt"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_small"
                     android:gravity="start"
-                    tools:visibility="visible"
-                    android:visibility="gone"
+                    android:text="@string/warning_verified_message_1_txt"
                     android:textColor="@color/colorWarring"
-                    style="@style/TextAppearance.AppCompat.Small"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/otp_et"
-                    android:text="@string/warning_verified_message_1_txt" />
+                    tools:visibility="visible" />
 
                 <EditText
                     android:id="@+id/email_id_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:imeOptions="actionNext"
-                    android:nextFocusDown="@+id/gst_number_et"
-                    android:textColor="@color/colorText"
-                    android:hint="@string/email_id_et"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
                     android:background="@drawable/et_round_border"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="start"
+                    android:hint="@string/email_id_et"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:nextFocusDown="@+id/gst_number_et"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/warning_verified_message_1_txt" />
 
                 <EditText
                     android:id="@+id/gst_number_et"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:imeOptions="actionDone"
-                    android:textColor="@color/colorText"
-                    android:hint="@string/gst_number_et"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
                     android:background="@drawable/et_round_border"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="start"
+                    android:hint="@string/gst_number_et"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:padding="@dimen/padding_medium"
+                    android:singleLine="true"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/email_id_et" />
 
                 <Button
                     android:id="@+id/submit_btn"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:padding="@dimen/padding_medium"
-                    android:onClick="submitTheRegistration"
-                    android:textColor="@color/colorText"
                     android:background="@drawable/btn_bg_shape"
+                    android:onClick="submitTheRegistration"
+                    android:padding="@dimen/padding_medium"
                     android:text="@string/submit_btn"
                     android:textAllCaps="false"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/gst_number_et" />
 
                 <TextView
                     android:id="@+id/warning_verified_message_2_txt"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_small"
                     android:gravity="start"
-                    tools:visibility="visible"
-                    android:visibility="gone"
+                    android:text="@string/warning_verified_message_2_txt"
                     android:textColor="@color/colorWarring"
-                    style="@style/TextAppearance.AppCompat.Small"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/submit_btn"
-                    android:text="@string/warning_verified_message_2_txt" />
+                    tools:visibility="visible" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

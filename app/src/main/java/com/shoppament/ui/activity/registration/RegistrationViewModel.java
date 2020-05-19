@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.shoppament.data.models.PictureModel;
+import com.shoppament.data.models.ShopKeeperDataModel;
 import com.shoppament.data.models.SlotTimingModel;
 import com.shoppament.data.repo.RegistrationRepository;
 import com.shoppament.ui.base.BaseViewModel;
@@ -16,10 +17,11 @@ import java.util.List;
 
 public class RegistrationViewModel extends BaseViewModel {
     private RegistrationRepository registrationRepository;
+    private ShopKeeperDataModel shopKeeperDataModel;
 
     private List<PictureModel> pictureModels = new ArrayList<>();
     private List<SlotTimingModel> slotTimingModels = new ArrayList<>();
-    private MutableLiveData<Double> perSlotTimeLiveData = new MutableLiveData<>();
+    private MutableLiveData<Integer> perSlotTimeLiveData = new MutableLiveData<>();
 
     public RegistrationViewModel(@NonNull Application application) {
         super(application);
@@ -59,30 +61,30 @@ public class RegistrationViewModel extends BaseViewModel {
         return slotTimingModels;
     }
 
-    double getTotalCapacity(String insideCapacityValue,String outsideCapacityValue) {
-        double insideCapacity = 0;
+    int getTotalCapacity(String insideCapacityValue,String outsideCapacityValue) {
+        int insideCapacity = 0;
         if(!insideCapacityValue.isEmpty()){
-            insideCapacity = Double.parseDouble(insideCapacityValue);
+            insideCapacity = Integer.parseInt(insideCapacityValue);
         }
-        double outsideCapacity = 0;
+        int outsideCapacity = 0;
         if(!outsideCapacityValue.isEmpty()){
-            outsideCapacity = Double.parseDouble(outsideCapacityValue);
+            outsideCapacity = Integer.parseInt(outsideCapacityValue);
         }
         return insideCapacity + outsideCapacity;
     }
 
-    MutableLiveData<Double> getPerSlotTime(double totalCapacity, String averageHours, String averageMinutes) {
+    MutableLiveData<Integer> getPerSlotTime(int totalCapacity, String averageHours, String averageMinutes) {
         perSlotTimeLiveData.setValue(totalCapacity * TimeFormatManager.getInstance().getMinutesFromHhMm(averageHours, averageMinutes));
         return perSlotTimeLiveData;
     }
 
-    double getPerSlotTimeValue() {
+    private Integer getPerSlotTimeValue() {
         return perSlotTimeLiveData.getValue();
     }
 
     MutableLiveData<List<SlotTimingModel>> setSlotsAndTimings(int startingTimeMinutes, int endingTimeMinutes) {
         MutableLiveData<List<SlotTimingModel>> slotsAndTimingsLiveData = new MutableLiveData<>();
-        int perSlotTimeMinutes = (int) getPerSlotTimeValue();
+        int perSlotTimeMinutes = getPerSlotTimeValue();
         if(perSlotTimeMinutes == 0 || startingTimeMinutes == 0 || endingTimeMinutes == 0)
             return slotsAndTimingsLiveData;
 
@@ -112,6 +114,8 @@ public class RegistrationViewModel extends BaseViewModel {
             slotTimingModel.setFromDate(slotFormat12Hours);
         }
         slotTimingModel.setToDate(TimeFormatManager.getInstance().format12Hours(endingTimeMinutes));
+        slotTimingModels.add(slotTimingModel);
+
         slotsAndTimingsLiveData.setValue(slotTimingModels);
 
         return slotsAndTimingsLiveData;
@@ -130,6 +134,13 @@ public class RegistrationViewModel extends BaseViewModel {
         dataListLiveData.setValue(registrationRepository.getShopTypes());
         return dataListLiveData;
     }
+
+//    public void submitTheRegistration() {
+//        if(shopKeeperDataModel == null)
+//            shopKeeperDataModel = new ShopKeeperDataModel();
+//
+//        shopKeeperDataModel.setsh
+//    }
 
     public MutableLiveData<String> fetchData(){
         return registrationRepository.fetchData();

@@ -77,6 +77,10 @@ public class TimeFormatManager {
         return simpleDateFormat24Hours.format(calendar.getTime());
     }
 
+    public int getMinutes(Calendar time){
+        return time.get(Calendar.HOUR_OF_DAY) * 60 + time.get(Calendar.MINUTE);
+    }
+
     public String format24Hours(Date time){
         return simpleDateFormat24Hours.format(time);
     }
