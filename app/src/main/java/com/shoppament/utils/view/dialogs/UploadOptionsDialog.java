@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shoppament.R;
-import com.shoppament.utils.callbacks.OnObjectChangedListener;
+import com.shoppament.utils.callbacks.OnTaskCompletedListener;
 import com.shoppament.utils.view.UploadFileController;
 
 public class UploadOptionsDialog extends BaseCustomDialog {
@@ -18,8 +18,8 @@ public class UploadOptionsDialog extends BaseCustomDialog {
         init();
     }
 
-    public UploadOptionsDialog(Activity activity, OnObjectChangedListener onObjectChangedListener) {
-        super(activity, R.layout.layout_upload_options_dialog, onObjectChangedListener);
+    public UploadOptionsDialog(Activity activity, OnTaskCompletedListener onTaskCompletedListener) {
+        super(activity, R.layout.layout_upload_options_dialog, onTaskCompletedListener);
         init();
     }
 
@@ -46,8 +46,8 @@ public class UploadOptionsDialog extends BaseCustomDialog {
             @Override
             public void onClick(View view) {
                 UploadFileController.getInstance().capturePicture(activity);
-                if(onObjectChangedListener!=null)
-                    onObjectChangedListener.onObjectChanged(0,0,alert);
+                if(onTaskCompletedListener!=null)
+                    onTaskCompletedListener.onCompleted(alert);
                 alert.dismiss();
             }
         });
@@ -56,8 +56,8 @@ public class UploadOptionsDialog extends BaseCustomDialog {
             @Override
             public void onClick(View view) {
                 UploadFileController.getInstance().uploadPictureFromDevice(activity);
-                if(onObjectChangedListener!=null)
-                    onObjectChangedListener.onObjectChanged(0,0,alert);
+                if(onTaskCompletedListener!=null)
+                    onTaskCompletedListener.onCompleted(alert);
                 alert.dismiss();
             }
         });

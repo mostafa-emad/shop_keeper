@@ -9,22 +9,22 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.shoppament.utils.callbacks.OnObjectChangedListener;
+import com.shoppament.utils.callbacks.OnTaskCompletedListener;
 
 import java.util.Objects;
 
 public class BaseCustomDialog {
-    protected OnObjectChangedListener onObjectChangedListener;
+    protected OnTaskCompletedListener onTaskCompletedListener;
     protected Activity activity;
     private int layout;
-    protected AlertDialog.Builder builder;
+    private AlertDialog.Builder builder;
     protected View rootView;
     protected AlertDialog alert;
     protected boolean isCancelEnabled = true;
     protected WindowManager.LayoutParams manager;
 
-    public BaseCustomDialog(Activity activity, int layout,OnObjectChangedListener onObjectChangedListener) {
-        this.onObjectChangedListener = onObjectChangedListener;
+    public BaseCustomDialog(Activity activity, int layout,OnTaskCompletedListener onTaskCompletedListener) {
+        this.onTaskCompletedListener = onTaskCompletedListener;
         this.layout = layout;
         this.activity = activity;
     }
@@ -34,9 +34,9 @@ public class BaseCustomDialog {
         LayoutInflater inflater = activity.getLayoutInflater();
         rootView = inflater.inflate(layout, null);
 
-        builder.setCancelable(true);
         builder.setView(rootView);
         alert =builder.create();
+        alert.setCancelable(isCancelEnabled);
 
         Objects.requireNonNull(alert.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         manager = Objects.requireNonNull(alert.getWindow()).getAttributes();

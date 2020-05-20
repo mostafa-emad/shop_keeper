@@ -4,7 +4,12 @@
     <string name="action_ok">Ok</string>
     <string name="action_cancel">Cancel</string>
     <string name="title_error">Error!</string>
-    <string name="msg_upload_pictures_msg_error">You can not upload more than 5 pictures</string>
+    <string name="error_gps_not_enabled">GPS not enabled please enable it first!</string>
+    <string name="error_gps_not_supported">Gps not Supported</string>
+    <string name="error_location_permissions">You do not have permission to use this feature</string>
+    <string name="error_location_detect_address">Can not detect the address of your selection</string>
+    <string name="error_exceed_pictures_max">You can not upload more than 5 pictures</string>
+    <string name="error_uploading_picture">Can not upload the picture please try again</string>
     <string name="msg_error">Please try again you have error</string>
     <string name="msg_network_error">No internet connection</string>
     <string name="title_activity_registration">Shop-Keeper</string>
