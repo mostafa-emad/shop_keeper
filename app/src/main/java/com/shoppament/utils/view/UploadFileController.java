@@ -45,7 +45,7 @@ public class UploadFileController {
         try {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
-            intent.setType("*/*");
+            intent.setType("image/*");
             activity.startActivityForResult(intent, UPLOAD_PHOTO_ID);
         }catch (Exception e){
             e.printStackTrace();

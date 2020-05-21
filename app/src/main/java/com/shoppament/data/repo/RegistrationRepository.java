@@ -33,18 +33,6 @@ public class RegistrationRepository {
             dataEntity.setId("123");
             dataEntity.setContent(apiData);
             appDatabase.userDao().inset(dataEntity);
-
-            //        ApiClient.getInstance().register(context, new ApiResponseListener() {
-//            @Override
-//            public void onSuccess(String operation, BaseResponse result, BaseRequest request) {
-//                dataMutableLiveData.setValue(context.getResources().getString(R.string.large_text));
-//            }
-//
-//            @Override
-//            public void onFailure(String operation, String errorMessage) {
-//                dataMutableLiveData.setValue(context.getResources().getString(R.string.msg_error));
-//            }
-//        });
         }else{
             dataMutableLiveData.setValue(dataEntity.getContent());
         }
@@ -54,11 +42,32 @@ public class RegistrationRepository {
 
     public ArrayList<String> getShopTypes() {
         ArrayList<String> data = new ArrayList<>();
-        data.add("Type 1");
-        data.add("Type 2");
-        data.add("Type 3");
-        data.add("Type 4");
-        data.add("Type 5");
+        data.add("Vegetable and Fruits");
+        data.add("Grocery/Provisions");
+        data.add("Supermarket");
+        data.add("Restaurant");
+        data.add("Café");
+
+        return data;
+    }
+
+    public ArrayList<String> getCities() {
+        ArrayList<String> data = new ArrayList<>();
+        data.add("Coimbatore");
+
+        return data;
+    }
+
+    public ArrayList<String> getCountries() {
+        ArrayList<String> data = new ArrayList<>();
+        data.add("India");
+
+        return data;
+    }
+
+    public ArrayList<String> getStates() {
+        ArrayList<String> data = new ArrayList<>();
+        data.add("Tamil Nadu");
 
         return data;
     }

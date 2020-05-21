@@ -22,6 +22,7 @@ import com.shoppament.data.models.PictureModel;
 import com.shoppament.data.models.ShopKeeperDataModel;
 import com.shoppament.data.models.SlotTimingModel;
 import com.shoppament.databinding.FragmentRegistrationBinding;
+import com.shoppament.ui.adapters.ItemsRecyclerAdapter;
 import com.shoppament.ui.adapters.PicturesRecyclerAdapter;
 import com.shoppament.ui.adapters.SlotsTimingRecyclerAdapter;
 import com.shoppament.ui.base.BaseFragment;
@@ -33,6 +34,7 @@ import com.shoppament.utils.view.LocationController;
 import com.shoppament.utils.view.UploadFileController;
 import com.shoppament.utils.view.ViewController;
 import com.shoppament.utils.view.dialogs.LocationMapDialog;
+import com.shoppament.utils.view.dialogs.OptionsListDialog;
 import com.shoppament.utils.view.dialogs.PictureViewDialog;
 import com.shoppament.utils.view.dialogs.UploadOptionsDialog;
 
@@ -45,9 +47,11 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
     private RegistrationViewModel registrationViewModel;
     private FragmentRegistrationBinding registrationBinding;
 
+    private ItemsRecyclerAdapter shopTypesRecyclerAdapter;
     private PicturesRecyclerAdapter picturesRecyclerAdapter;
     private SlotsTimingRecyclerAdapter slotsTimingRecyclerAdapter;
 
+    private Calendar averageTimeCalendar;
     private Calendar startingTimeCalendar;
     private Calendar endingTimeCalendar;
 
@@ -104,6 +108,10 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
 
         ((RegistrationActivity)activity).setSupportActionBar(registrationBinding.toolbar);
 
+        registrationBinding.shopTypesRecycler.setLayoutManager(new LinearLayoutManager(activity));
+        shopTypesRecyclerAdapter = new ItemsRecyclerAdapter(registrationViewModel.getShopTypesList(),activity);
+        registrationBinding.shopTypesRecycler.setAdapter(shopTypesRecyclerAdapter);
+
         registrationBinding.picturesRecycler.setLayoutManager(new LinearLayoutManager(activity));
         picturesRecyclerAdapter = new PicturesRecyclerAdapter(registrationViewModel.getPictureModels(),activity,this);
         registrationBinding.picturesRecycler.setAdapter(picturesRecyclerAdapter);
@@ -129,6 +137,9 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         registrationBinding.startingTimeEt.setOnClickListener(this);
         registrationBinding.endingTimeEt.setOnClickListener(this);
         registrationBinding.submitBtn.setOnClickListener(this);
+        registrationBinding.cityTxt.setOnClickListener(this);
+        registrationBinding.countryTxt.setOnClickListener(this);
+        registrationBinding.stateTxt.setOnClickListener(this);
     }
 
     @Override
@@ -150,8 +161,17 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
             case R.id.ending_time_et:
                 getEndingTime();
                 break;
+            case R.id.city_txt:
+                showCitiesList(view);
+                break;
+            case R.id.country_txt:
+                showCountriesList(view);
+                break;
+            case R.id.state_txt:
+                showStatesList(view);
+                break;
             case R.id.shop_type_txt:
-                showShopTypeList(view);
+                showShopTypeList();
                 break;
             case R.id.submit_btn:
                 submitTheRegistration();
@@ -192,6 +212,10 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
     }
 
     private void showUploadPicsError(String message) {
+        showErrorToast(message);
+    }
+
+    private void showErrorToast(String message) {
         Toast.makeText(activity,message, Toast.LENGTH_LONG).show();
     }
 
@@ -254,18 +278,23 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
     }
 
     private void showLocationErrors(String message) {
-        Toast.makeText(activity,message, Toast.LENGTH_LONG).show();
+        showErrorToast(message);
     }
 
     private void getTime() {
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
+        if(averageTimeCalendar == null)
+            averageTimeCalendar = Calendar.getInstance();
+
+        int hour = averageTimeCalendar.get(Calendar.HOUR_OF_DAY);
+        int minute = averageTimeCalendar.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog;
         timePickerDialog = new TimePickerDialog(activity, android.R.style.Theme_Holo_Light_Dialog_NoActionBar
                 ,new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                averageTimeCalendar.set(Calendar.HOUR_OF_DAY,selectedHour);
+                averageTimeCalendar.set(Calendar.MINUTE,selectedMinute);
+
                 registrationBinding.averageTimeHhEt.setText(String.valueOf(selectedHour));
                 registrationBinding.averageTimeMmEt.setText(String.valueOf(selectedMinute));
             }
@@ -291,14 +320,70 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
-    private void showShopTypeList(final View view) {
+    private void showShopTypeList() {
         registrationViewModel.showShopTypeList().observe(this, new Observer<ArrayList<String>>() {
+            @Override
+            public void onChanged(ArrayList<String> list) {
+                new OptionsListDialog(activity, getResources().getString(R.string.shop_type_et),
+                        list, new OnTaskCompletedListener() {
+                    @Override
+                    public void onCompleted(Object result) {
+                        String type = (String)result;
+                        registrationBinding.shopTypeTxt.setText(type);
+                        registrationViewModel.addShopType(type).observe(RegistrationFragment.this
+                                , new Observer<List<String>>() {
+                            @Override
+                            public void onChanged(List<String> list) {
+                                shopTypesRecyclerAdapter.setItems(list);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(int duration, String message) {
+
+                    }
+                });
+            }
+        });
+    }
+
+    private void showCitiesList(final View view) {
+        registrationViewModel.getCities().observe(this, new Observer<ArrayList<String>>() {
             @Override
             public void onChanged(ArrayList<String> list) {
                 ViewController.getInstance().showOptionsPopupWindow(activity, list, new OnObjectChangedListener() {
                     @Override
                     public void onObjectChanged(int id, int position, Object object) {
-                        registrationBinding.shopTypeTxt.setText((String)object);
+                        registrationBinding.cityTxt.setText((String)object);
+                    }
+                }).showAsDropDown(view);
+            }
+        });
+    }
+
+    private void showCountriesList(final View view) {
+        registrationViewModel.getCountries().observe(this, new Observer<ArrayList<String>>() {
+            @Override
+            public void onChanged(ArrayList<String> list) {
+                ViewController.getInstance().showOptionsPopupWindow(activity, list, new OnObjectChangedListener() {
+                    @Override
+                    public void onObjectChanged(int id, int position, Object object) {
+                        registrationBinding.countryTxt.setText((String)object);
+                    }
+                }).showAsDropDown(view);
+            }
+        });
+    }
+
+    private void showStatesList(final View view) {
+        registrationViewModel.getStates().observe(this, new Observer<ArrayList<String>>() {
+            @Override
+            public void onChanged(ArrayList<String> list) {
+                ViewController.getInstance().showOptionsPopupWindow(activity, list, new OnObjectChangedListener() {
+                    @Override
+                    public void onObjectChanged(int id, int position, Object object) {
+                        registrationBinding.stateTxt.setText((String)object);
                     }
                 }).showAsDropDown(view);
             }
@@ -318,6 +403,14 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 startingTimeCalendar.set(Calendar.HOUR_OF_DAY,selectedHour);
                 startingTimeCalendar.set(Calendar.MINUTE,selectedMinute);
+
+                if(!registrationBinding.endingTimeEt.getText().toString().isEmpty() &&
+                        endingTimeCalendar.getTimeInMillis() <= startingTimeCalendar.getTimeInMillis()){
+                    startingTimeCalendar.set(Calendar.HOUR_OF_DAY,hour);
+                    startingTimeCalendar.set(Calendar.MINUTE,minute);
+                    showErrorToast(getResources().getString(R.string.error_grater_starting_time));
+                    return;
+                }
                 registrationBinding.startingTimeEt.setText(
                         TimeFormatManager.getInstance().format12Hours(startingTimeCalendar.getTime()));
             }
@@ -338,6 +431,14 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 endingTimeCalendar.set(Calendar.HOUR_OF_DAY,selectedHour);
                 endingTimeCalendar.set(Calendar.MINUTE,selectedMinute);
+
+                if(!registrationBinding.startingTimeEt.getText().toString().isEmpty() &&
+                        startingTimeCalendar.getTimeInMillis() >= endingTimeCalendar.getTimeInMillis()){
+                    endingTimeCalendar.set(Calendar.HOUR_OF_DAY,hour);
+                    endingTimeCalendar.set(Calendar.MINUTE,minute);
+                    showErrorToast(getResources().getString(R.string.error_less_ending_time));
+                    return;
+                }
                 registrationBinding.endingTimeEt.setText(
                         TimeFormatManager.getInstance().format12Hours(endingTimeCalendar.getTime()));
             }

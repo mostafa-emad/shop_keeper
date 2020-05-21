@@ -10,6 +10,8 @@
     <string name="error_location_detect_address">Can not detect the address of your selection</string>
     <string name="error_exceed_pictures_max">You can not upload more than 5 pictures</string>
     <string name="error_uploading_picture">Can not upload the picture please try again</string>
+    <string name="error_grater_starting_time">Please select time less than ending time</string>
+    <string name="error_less_ending_time">Please select time grater than start time</string>
     <string name="msg_error">Please try again you have error</string>
     <string name="msg_network_error">No internet connection</string>
     <string name="title_activity_registration">Shop-Keeper</string>

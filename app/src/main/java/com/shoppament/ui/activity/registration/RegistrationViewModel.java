@@ -19,6 +19,7 @@ public class RegistrationViewModel extends BaseViewModel {
     private RegistrationRepository registrationRepository;
     private ShopKeeperDataModel shopKeeperDataModel;
 
+    private List<String> shopTypesList = new ArrayList<>();
     private List<PictureModel> pictureModels = new ArrayList<>();
     private List<SlotTimingModel> slotTimingModels = new ArrayList<>();
     private MutableLiveData<Integer> perSlotTimeLiveData = new MutableLiveData<>();
@@ -51,6 +52,19 @@ public class RegistrationViewModel extends BaseViewModel {
 
     boolean isUploadNewPictureEnabled() {
         return pictureModels.size() < 5;
+    }
+
+    MutableLiveData<List<String>> addShopType(String type){
+        MutableLiveData<List<String>> shopTypeLiveData = new MutableLiveData<>();
+        if(type != null && !shopTypesList.contains(type)) {
+            shopTypesList.add(type);
+            shopTypeLiveData.setValue(shopTypesList);
+        }
+        return shopTypeLiveData;
+    }
+
+    List<String> getShopTypesList() {
+        return shopTypesList;
     }
 
     List<PictureModel> getPictureModels() {
@@ -132,6 +146,24 @@ public class RegistrationViewModel extends BaseViewModel {
     MutableLiveData<ArrayList<String>> showShopTypeList(){
         MutableLiveData<ArrayList<String>> dataListLiveData = new MutableLiveData<>();
         dataListLiveData.setValue(registrationRepository.getShopTypes());
+        return dataListLiveData;
+    }
+
+    MutableLiveData<ArrayList<String>> getCities(){
+        MutableLiveData<ArrayList<String>> dataListLiveData = new MutableLiveData<>();
+        dataListLiveData.setValue(registrationRepository.getCities());
+        return dataListLiveData;
+    }
+
+    MutableLiveData<ArrayList<String>> getStates(){
+        MutableLiveData<ArrayList<String>> dataListLiveData = new MutableLiveData<>();
+        dataListLiveData.setValue(registrationRepository.getStates());
+        return dataListLiveData;
+    }
+
+    MutableLiveData<ArrayList<String>> getCountries(){
+        MutableLiveData<ArrayList<String>> dataListLiveData = new MutableLiveData<>();
+        dataListLiveData.setValue(registrationRepository.getCountries());
         return dataListLiveData;
     }
 
