@@ -9,21 +9,23 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.shoppament.utils.AndroidPermissions;
 import com.shoppament.utils.callbacks.OnTaskCompletedListener;
 
 import java.util.Objects;
 
 public class BaseCustomDialog {
-    protected OnTaskCompletedListener onTaskCompletedListener;
+    AndroidPermissions permissions;
+    OnTaskCompletedListener onTaskCompletedListener;
     protected Activity activity;
     private int layout;
     private AlertDialog.Builder builder;
-    protected View rootView;
-    protected AlertDialog alert;
-    protected boolean isCancelEnabled = true;
+    View rootView;
+    AlertDialog alert;
+    private boolean isCancelEnabled = true;
     protected WindowManager.LayoutParams manager;
 
-    public BaseCustomDialog(Activity activity, int layout,OnTaskCompletedListener onTaskCompletedListener) {
+    BaseCustomDialog(Activity activity, int layout, OnTaskCompletedListener onTaskCompletedListener) {
         this.onTaskCompletedListener = onTaskCompletedListener;
         this.layout = layout;
         this.activity = activity;
@@ -42,7 +44,7 @@ public class BaseCustomDialog {
         manager = Objects.requireNonNull(alert.getWindow()).getAttributes();
     }
 
-    public int pxFromDp(float dp) {
+    int pxFromDp(float dp) {
         return (int) (dp * activity.getResources().getDisplayMetrics().density);
     }
 }

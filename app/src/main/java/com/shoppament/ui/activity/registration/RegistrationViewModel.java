@@ -21,7 +21,7 @@ public class RegistrationViewModel extends BaseViewModel {
 
     private List<String> shopTypesList = new ArrayList<>();
     private List<PictureModel> pictureModels = new ArrayList<>();
-    private List<SlotTimingModel> slotTimingModels = new ArrayList<>();
+    public MutableLiveData<List<SlotTimingModel>> slotTimingLiveData = null;
     private MutableLiveData<Integer> perSlotTimeLiveData = new MutableLiveData<>();
 
     public RegistrationViewModel(@NonNull Application application) {
@@ -50,6 +50,18 @@ public class RegistrationViewModel extends BaseViewModel {
         return deletePictureLiveData;
     }
 
+    void deleteSlot(int position){
+        try {
+            List<SlotTimingModel> slotTimingModels = slotTimingLiveData.getValue();
+            if(slotTimingModels != null){
+                slotTimingModels.remove(position);
+                slotTimingLiveData.setValue(slotTimingModels);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     boolean isUploadNewPictureEnabled() {
         return pictureModels.size() < 5;
     }
@@ -71,11 +83,15 @@ public class RegistrationViewModel extends BaseViewModel {
         return pictureModels;
     }
 
-    List<SlotTimingModel> getSlotTimingModels() {
-        return slotTimingModels;
+    MutableLiveData<List<SlotTimingModel>> getSlotTimingLiveData() {
+        if(slotTimingLiveData == null) {
+            slotTimingLiveData = new MutableLiveData<>();
+            slotTimingLiveData.setValue(new ArrayList<SlotTimingModel>());
+        }
+        return slotTimingLiveData;
     }
 
-    int getTotalCapacity(String insideCapacityValue,String outsideCapacityValue) {
+    int getTotalCapacity(String insideCapacityValue, String outsideCapacityValue) {
         int insideCapacity = 0;
         if(!insideCapacityValue.isEmpty()){
             insideCapacity = Integer.parseInt(insideCapacityValue);
@@ -96,23 +112,33 @@ public class RegistrationViewModel extends BaseViewModel {
         return perSlotTimeLiveData.getValue();
     }
 
-    MutableLiveData<List<SlotTimingModel>> setSlotsAndTimings(int startingTimeMinutes, int endingTimeMinutes) {
-        MutableLiveData<List<SlotTimingModel>> slotsAndTimingsLiveData = new MutableLiveData<>();
+    void setSlotsAndTimings(int startingTimeMinutes, int endingTimeMinutes) {
         int perSlotTimeMinutes = getPerSlotTimeValue();
         if(perSlotTimeMinutes == 0 || startingTimeMinutes == 0 || endingTimeMinutes == 0)
-            return slotsAndTimingsLiveData;
+            return;
 
         int operationalTimeMinutes = endingTimeMinutes - startingTimeMinutes;
+        double result = operationalTimeMinutes / perSlotTimeMinutes;
+
+
+
+        //Case I:
+        if(result < 3){
+            slotTimingLiveData.setValue(new ArrayList<SlotTimingModel>());
+            return;
+        }
+
+//        int slotsNumber = (int) result;
+//        if(result - slotsNumber == 0){
+//            slotsNumber--;
+//        }
 
         List<SlotTimingModel> slotTimingModels = new ArrayList<>();
         SlotTimingModel slotTimingModel = new SlotTimingModel();
         slotTimingModel.setFromDate(TimeFormatManager.getInstance().format12Hours(startingTimeMinutes));
-        if(operationalTimeMinutes / perSlotTimeMinutes <= 1){
-            slotTimingModel.setToDate(TimeFormatManager.getInstance().format12Hours(endingTimeMinutes));
-            slotTimingModels.add(slotTimingModel);
-            slotsAndTimingsLiveData.setValue(slotTimingModels);
-            return slotsAndTimingsLiveData;
-        }
+//        slotTimingModel.setToDate(TimeFormatManager.getInstance().format12Hours(endingTimeMinutes));
+//        slotTimingModels.add(slotTimingModel);
+
         int slotEndTimeMinutes = startingTimeMinutes;
         String slotFormat12Hours;
         while (operationalTimeMinutes > perSlotTimeMinutes){
@@ -127,12 +153,10 @@ public class RegistrationViewModel extends BaseViewModel {
             slotTimingModel = new SlotTimingModel();
             slotTimingModel.setFromDate(slotFormat12Hours);
         }
-        slotTimingModel.setToDate(TimeFormatManager.getInstance().format12Hours(endingTimeMinutes));
-        slotTimingModels.add(slotTimingModel);
+//        slotTimingModel.setToDate(TimeFormatManager.getInstance().format12Hours(endingTimeMinutes));
+//        slotTimingModels.add(slotTimingModel);
 
-        slotsAndTimingsLiveData.setValue(slotTimingModels);
-
-        return slotsAndTimingsLiveData;
+        slotTimingLiveData.setValue(slotTimingModels);
     }
 
     private void deleteSelectedSlot() {

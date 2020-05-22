@@ -116,9 +116,26 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         picturesRecyclerAdapter = new PicturesRecyclerAdapter(registrationViewModel.getPictureModels(),activity,this);
         registrationBinding.picturesRecycler.setAdapter(picturesRecyclerAdapter);
 
-        registrationBinding.availableSlotTimingsRecycler.setLayoutManager(new LinearLayoutManager(activity));
-        slotsTimingRecyclerAdapter = new SlotsTimingRecyclerAdapter(registrationViewModel.getSlotTimingModels(),activity);
-        registrationBinding.availableSlotTimingsRecycler.setAdapter(slotsTimingRecyclerAdapter);
+        registrationViewModel.getSlotTimingLiveData().observe(this, new Observer<List<SlotTimingModel>>() {
+            @Override
+            public void onChanged(List<SlotTimingModel> slotTimingModels) {
+                if(slotsTimingRecyclerAdapter == null) {
+                    registrationBinding.availableSlotTimingsRecycler.setLayoutManager(new LinearLayoutManager(activity));
+                    slotsTimingRecyclerAdapter = new SlotsTimingRecyclerAdapter(slotTimingModels, activity);
+                    registrationBinding.availableSlotTimingsRecycler.setAdapter(slotsTimingRecyclerAdapter);
+                    slotsTimingRecyclerAdapter.setOnObjectChangedListener(new OnObjectChangedListener() {
+                        @Override
+                        public void onObjectChanged(int id, int position, Object object) {
+                            if(id == 1){
+                                registrationViewModel.deletePicture(position);
+                            }
+                        }
+                    });
+                }else{
+                    slotsTimingRecyclerAdapter.setSlotTimingModels(slotTimingModels);
+                }
+            }
+        });
     }
 
     @Override
@@ -205,7 +222,17 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
 
     private void clickToUploadPics() {
         if(registrationViewModel.isUploadNewPictureEnabled()) {
-            new UploadOptionsDialog(activity);
+            new UploadOptionsDialog(activity, new OnTaskCompletedListener() {
+                @Override
+                public void onCompleted(Object result) {
+
+                }
+
+                @Override
+                public void onError(int duration, String message) {
+                    showUploadPicsError(message);
+                }
+            });
         }else{
             showUploadPicsError(getResources().getString(R.string.error_exceed_pictures_max));
         }
@@ -309,15 +336,17 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
 
         registrationViewModel.setSlotsAndTimings(
                 TimeFormatManager.getInstance().getMinutes(startingTimeCalendar),
-                TimeFormatManager.getInstance().getMinutes(endingTimeCalendar))
-                .observe(this, new Observer<List<SlotTimingModel>>() {
-            @Override
-            public void onChanged(List<SlotTimingModel> slotTimingModels) {
-                if(slotTimingModels != null){
-                    slotsTimingRecyclerAdapter.setSlotTimingModels(slotTimingModels);
-                }
-            }
-        });
+                TimeFormatManager.getInstance().getMinutes(endingTimeCalendar));
+//                .observe(this, new Observer<List<SlotTimingModel>>() {
+//            @Override
+//            public void onChanged(List<SlotTimingModel> slotTimingModels) {
+//                if(slotTimingModels != null){
+//                    slotsTimingRecyclerAdapter.setSlotTimingModels(slotTimingModels);
+//                }else{
+//                    showErrorToast(getResources().getString(R.string.error_slots_1));
+//                }
+//            }
+//        });
     }
 
     private void showShopTypeList() {

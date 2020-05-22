@@ -108,7 +108,7 @@ public class LocationMapDialog extends BaseCustomDialog implements OnMapReadyCal
 
         LatLng latLng = addressLocationModel.getLocation(activity);
         if(latLng != null) {
-            updateMarker(latLng);
+            updateMarker(latLng,true);
         }else{
 //            googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
 //                @Override
@@ -124,7 +124,7 @@ public class LocationMapDialog extends BaseCustomDialog implements OnMapReadyCal
 
                 @Override
                 public void onCompleted(LatLng latLng) {
-                    updateMarker(latLng);
+                    updateMarker(latLng,true);
                 }
 
                 @Override
@@ -141,7 +141,7 @@ public class LocationMapDialog extends BaseCustomDialog implements OnMapReadyCal
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                updateMarker(latLng);
+                updateMarker(latLng,false);
             }
         });
 
@@ -157,7 +157,7 @@ public class LocationMapDialog extends BaseCustomDialog implements OnMapReadyCal
         });
     }
 
-    private void updateMarker(LatLng latLng) {
+    private void updateMarker(LatLng latLng,boolean shouldUpdateCamera) {
         if (currentMarker != null) {
             currentMarker.remove();
         }
@@ -168,9 +168,11 @@ public class LocationMapDialog extends BaseCustomDialog implements OnMapReadyCal
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
         currentMarker = googleMap.addMarker(markerOptions);
 
-        //move map camera
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        if(shouldUpdateCamera) {
+            //move map camera
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        }
 
         updateLocationAddress();
     }

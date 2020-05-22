@@ -4,6 +4,7 @@
     <string name="action_ok">Ok</string>
     <string name="action_cancel">Cancel</string>
     <string name="title_error">Error!</string>
+    <string name="error_upload_services_disabled">Please enable upload services first!</string>
     <string name="error_gps_not_enabled">GPS not enabled please enable it first!</string>
     <string name="error_gps_not_supported">Gps not Supported</string>
     <string name="error_location_permissions">You do not have permission to use this feature</string>
@@ -12,6 +13,7 @@
     <string name="error_uploading_picture">Can not upload the picture please try again</string>
     <string name="error_grater_starting_time">Please select time less than ending time</string>
     <string name="error_less_ending_time">Please select time grater than start time</string>
+    <string name="error_slots_1">Need to accommodate at least 3 slots. Please reduce Average Time Taken and/or Capacity.</string>
     <string name="msg_error">Please try again you have error</string>
     <string name="msg_network_error">No internet connection</string>
     <string name="title_activity_registration">Shop-Keeper</string>
@@ -70,6 +72,7 @@
     <string name="camera_option_txt">Camera</string>
     <string name="device_option_txt">Upload from Device.</string>
     <string name="select_location_title_txt">Select Location</string>
+    <string name="map_dialog_desc_txt">"Click on your location in the map to set the marker."</string>
     <string name="done_btn">Done</string>
     <string name="close_btn">Close</string>
 

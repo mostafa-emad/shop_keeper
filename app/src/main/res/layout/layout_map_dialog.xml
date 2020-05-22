@@ -24,12 +24,24 @@
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/desc_txt"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_txt"
+            android:gravity="center"
+            android:padding="@dimen/padding_large"
+            android:singleLine="true"
+            android:text="@string/map_dialog_desc_txt"
+            android:textColor="@color/colorText" />
+
         <fragment
             android:id="@+id/map_container"
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/title_txt"
+            android:layout_below="@+id/desc_txt"
             android:layout_above="@+id/done_btn"/>
 
         <Button
@@ -39,6 +51,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:gravity="center"
+            android:textAllCaps="false"
             android:layout_alignParentBottom="true"
             android:padding="@dimen/padding_large"
             android:singleLine="true"

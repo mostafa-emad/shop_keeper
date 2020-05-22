@@ -55,9 +55,12 @@ public class SlotsTimingRecyclerAdapter extends BaseRecyclerAdapter {
             holder.binding.removeImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    slotTimingModels.remove(position);
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(position,1);
+//                    slotTimingModels.remove(position);
+//                    notifyItemRemoved(position);
+//                    notifyItemRangeChanged(position,1);
+                    if(onObjectChangedListener != null){
+                        onObjectChangedListener.onObjectChanged(1,position,slotTimingModels);
+                    }
                 }
             });
         }catch (Exception e){

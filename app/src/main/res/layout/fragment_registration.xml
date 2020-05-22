@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.shoppament.ui.activity.registration.RegistrationViewModel" />
@@ -637,17 +637,31 @@
                     android:layout_margin="@dimen/padding_medium"
                     android:nestedScrollingEnabled="false"
                     android:padding="@dimen/padding_medium"
+                    android:visibility="@{viewModel.slotTimingLiveData.size() > 0 ? View.VISIBLE : View.INVISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/available_slot_timings_title_txt"
                     tools:ignore="UnusedAttribute" />
 
                 <TextView
+                    android:id="@+id/empty_slots_txt"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:gravity="start"
+                    android:visibility="@{viewModel.slotTimingLiveData.size() == 0 ? View.VISIBLE : View.GONE}"
+                    android:text="@string/error_slots_1"
+                    android:textColor="@color/colorText"
+                    app:layout_constraintTop_toBottomOf="@+id/available_slot_timings_title_txt" />
+
+
+                <TextView
                     android:id="@+id/map_location_title_txt"
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_xlarge"
                     android:gravity="start"
                     android:text="@string/map_location_title_txt"
                     android:textColor="@color/colorText"
