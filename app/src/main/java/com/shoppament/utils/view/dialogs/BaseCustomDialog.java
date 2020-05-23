@@ -9,13 +9,11 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.shoppament.utils.AndroidPermissions;
 import com.shoppament.utils.callbacks.OnTaskCompletedListener;
 
 import java.util.Objects;
 
 public class BaseCustomDialog {
-    AndroidPermissions permissions;
     OnTaskCompletedListener onTaskCompletedListener;
     protected Activity activity;
     private int layout;

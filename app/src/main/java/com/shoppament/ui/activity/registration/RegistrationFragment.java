@@ -21,6 +21,7 @@ import com.shoppament.data.models.AddressLocationModel;
 import com.shoppament.data.models.PictureModel;
 import com.shoppament.data.models.ShopKeeperDataModel;
 import com.shoppament.data.models.SlotTimingModel;
+import com.shoppament.data.remote.model.response.BaseResponse;
 import com.shoppament.databinding.FragmentRegistrationBinding;
 import com.shoppament.ui.adapters.ItemsRecyclerAdapter;
 import com.shoppament.ui.adapters.PicturesRecyclerAdapter;
@@ -70,12 +71,15 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
 
         @Override
         public void afterTextChanged(Editable editable) {
+            //Calculate total capacity
             int totalCapacity = registrationViewModel.getTotalCapacity(
                     registrationBinding.insideCapacityEt.getText().toString(),
                     registrationBinding.outsideCapacityEt.getText().toString());
 
+            //Update total capacity view
             registrationBinding.totalCapacityTxt.setText(String.valueOf(totalCapacity));
 
+            //Calculate per slot timing and update view
             registrationViewModel.getPerSlotTime(totalCapacity,
                     registrationBinding.averageTimeHhEt.getText().toString(),
                     registrationBinding.averageTimeMmEt.getText().toString())
@@ -127,7 +131,7 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
                         @Override
                         public void onObjectChanged(int id, int position, Object object) {
                             if(id == 1){
-                                registrationViewModel.deletePicture(position);
+                                registrationViewModel.deleteSlot(position);
                             }
                         }
                     });
@@ -140,11 +144,13 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     protected void doCreate() {
+        //Add Text Watcher to update total capacity and per slots timing with.
         registrationBinding.insideCapacityEt.addTextChangedListener(totalCapacityWatcher);
         registrationBinding.outsideCapacityEt.addTextChangedListener(totalCapacityWatcher);
         registrationBinding.averageTimeHhEt.addTextChangedListener(totalCapacityWatcher);
         registrationBinding.averageTimeMmEt.addTextChangedListener(totalCapacityWatcher);
 
+        //Set OnClick to actions
         registrationBinding.uploadPicturesBtn.setOnClickListener(this);
         registrationBinding.selectLocationBtn.setOnClickListener(this);
         registrationBinding.averageTimeHhEt.setOnClickListener(this);
@@ -198,6 +204,12 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
+    /**
+     * this method to handle the data result of uploading pictures with two options
+     * Camera and local files.
+     * @param optionId
+     * @param data
+     */
     void handleUploadPicture(int optionId, Intent data){
         PictureModel pictureModel = null;
         if(optionId == UploadFileController.CAPTURE_PHOTO_ID){
@@ -220,7 +232,7 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
-    private void clickToUploadPics() {
+    void clickToUploadPics() {
         if(registrationViewModel.isUploadNewPictureEnabled()) {
             new UploadOptionsDialog(activity, new OnTaskCompletedListener() {
                 @Override
@@ -308,12 +320,20 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         showErrorToast(message);
     }
 
+    /**
+     * show time picker dialog for average time by hh and mm format
+     *
+     */
     private void getTime() {
-        if(averageTimeCalendar == null)
+        int hour = 0;
+        int minute = 0;
+        if(averageTimeCalendar == null) {
             averageTimeCalendar = Calendar.getInstance();
+        }else{
+            hour = averageTimeCalendar.get(Calendar.HOUR_OF_DAY);
+            minute = averageTimeCalendar.get(Calendar.MINUTE);
+        }
 
-        int hour = averageTimeCalendar.get(Calendar.HOUR_OF_DAY);
-        int minute = averageTimeCalendar.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog;
         timePickerDialog = new TimePickerDialog(activity, android.R.style.Theme_Holo_Light_Dialog_NoActionBar
                 ,new TimePickerDialog.OnTimeSetListener() {
@@ -330,6 +350,10 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         timePickerDialog.show();
     }
 
+    /**
+     * reset slots timing when click the reset button
+     *
+     */
     private void restSlotTimings() {
         if(startingTimeCalendar == null || endingTimeCalendar == null)
             return;
@@ -337,18 +361,12 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         registrationViewModel.setSlotsAndTimings(
                 TimeFormatManager.getInstance().getMinutes(startingTimeCalendar),
                 TimeFormatManager.getInstance().getMinutes(endingTimeCalendar));
-//                .observe(this, new Observer<List<SlotTimingModel>>() {
-//            @Override
-//            public void onChanged(List<SlotTimingModel> slotTimingModels) {
-//                if(slotTimingModels != null){
-//                    slotsTimingRecyclerAdapter.setSlotTimingModels(slotTimingModels);
-//                }else{
-//                    showErrorToast(getResources().getString(R.string.error_slots_1));
-//                }
-//            }
-//        });
     }
 
+    /**
+     * show shop list dialog
+     *
+     */
     private void showShopTypeList() {
         registrationViewModel.showShopTypeList().observe(this, new Observer<ArrayList<String>>() {
             @Override
@@ -377,6 +395,11 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
+    /**
+     * show cities list popup below city text view
+     *
+     * @param view
+     */
     private void showCitiesList(final View view) {
         registrationViewModel.getCities().observe(this, new Observer<ArrayList<String>>() {
             @Override
@@ -391,6 +414,11 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
+    /**
+     * show countries list popup below country text view
+     *
+     * @param view
+     */
     private void showCountriesList(final View view) {
         registrationViewModel.getCountries().observe(this, new Observer<ArrayList<String>>() {
             @Override
@@ -405,6 +433,11 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
+    /**
+     * show sates list popup below state text view
+     *
+     * @param view
+     */
     private void showStatesList(final View view) {
         registrationViewModel.getStates().observe(this, new Observer<ArrayList<String>>() {
             @Override
@@ -419,6 +452,11 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
+    /**
+     * show time picker dialog to select starting time
+     *
+     * this time should be less than ending time
+     */
     private void getStartingTime() {
         if(startingTimeCalendar == null)
             startingTimeCalendar = Calendar.getInstance();
@@ -447,6 +485,11 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         timePickerDialog.show();
     }
 
+    /**
+     * show time picker dialog to select ending time
+     *
+     * this time should be grater than starting time
+     */
     private void getEndingTime() {
         if(endingTimeCalendar == null)
             endingTimeCalendar = Calendar.getInstance();
@@ -475,6 +518,17 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         timePickerDialog.show();
     }
 
+    /**
+     * check validation of every mandatory field to create shop
+     *
+     * show error warring message for any missing data or wrong
+     *
+     * you can add custom message for any error separate just create string error msg
+     * then place it in validation check.
+     *
+     * finally generate json object for shop keeper details
+     *
+     */
     private void submitTheRegistration() {
         ShopKeeperDataModel shopKeeperDataModel = new ShopKeeperDataModel();
 
@@ -614,7 +668,12 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         shopKeeperDataModel.setEmailID(email);
         shopKeeperDataModel.setGSTNumber(registrationBinding.gstNumberEt.getText().toString());
 
-        String shopKeeperJson = new Gson().toJson(shopKeeperDataModel);
+        registrationViewModel.submitTheRegistration(new Gson().toJson(shopKeeperDataModel)).observe(this, new Observer<BaseResponse>() {
+            @Override
+            public void onChanged(BaseResponse baseResponse) {
+
+            }
+        });
     }
 
     private void showSubmitWarringError(String error){

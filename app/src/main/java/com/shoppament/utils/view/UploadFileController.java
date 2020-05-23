@@ -1,5 +1,6 @@
 package com.shoppament.utils.view;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,14 +8,25 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import com.mindorks.paracamera.Camera;
+import com.shoppament.R;
 import com.shoppament.data.models.PictureModel;
+import com.shoppament.utils.AndroidPermissions;
 import com.shoppament.utils.FileUtils;
 
+/**
+ * this controller to manage uploading pictures
+ *
+ * from camera or from local device files
+ *
+ */
 public class UploadFileController {
     public static final int CAPTURE_PHOTO_ID = 1001;
     public static final int UPLOAD_PHOTO_ID = 1002;
+    public static final int PERMISSIONS_CAMERA_REQUEST_CODE = 101;
+    public static final int PERMISSIONS_FILES_REQUEST_CODE = 102;
     private static UploadFileController controller;
     private Camera camera;
+    private AndroidPermissions permissions;
 
     public static UploadFileController getInstance() {
         if (controller == null) {
@@ -30,6 +42,11 @@ public class UploadFileController {
         return controller;
     }
 
+    /**
+     * open camera and capture picture
+     *
+     * @param activity
+     */
     public void capturePicture(Activity activity){
         try {
             if(camera == null)
@@ -41,6 +58,11 @@ public class UploadFileController {
         }
     }
 
+    /**
+     * select files from local data
+     *
+     * @param activity
+     */
     public void uploadPictureFromDevice(Activity activity){
         try {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -52,6 +74,11 @@ public class UploadFileController {
         }
     }
 
+    /**
+     * init camera to capture the picture
+     *
+     * @param activity
+     */
     private void initCamera(Activity activity) {
         camera = new Camera.Builder()
                 .resetToCorrectOrientation(true)// it will rotate the camera bitmap to the correct orientation from meta data
@@ -116,4 +143,45 @@ public class UploadFileController {
         return null;
     }
 
+    public boolean isCameraEnabled(Activity activity){
+        permissions = new AndroidPermissions(activity,
+                Manifest.permission.CAMERA
+        );
+        if(!permissions.checkPermissions()){
+            activity.getResources().getString(R.string.error_upload_services_disabled);
+            permissions.requestPermissions(PERMISSIONS_CAMERA_REQUEST_CODE);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isLocalDeviceEnabled(Activity activity){
+        permissions = new AndroidPermissions(activity,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        );
+        if(!permissions.checkPermissions()){
+            activity.getResources().getString(R.string.error_upload_services_disabled);
+            permissions.requestPermissions(PERMISSIONS_FILES_REQUEST_CODE);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isMediaPermissionsEnabled(Activity activity){
+        permissions = new AndroidPermissions(activity,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        );
+        if(!permissions.checkPermissions()){
+            activity.getResources().getString(R.string.error_upload_services_disabled);
+            permissions.requestPermissions(PERMISSIONS_FILES_REQUEST_CODE);
+            return false;
+        }
+        return true;
+    }
+
+    public AndroidPermissions getPermissions() {
+        return permissions;
+    }
 }

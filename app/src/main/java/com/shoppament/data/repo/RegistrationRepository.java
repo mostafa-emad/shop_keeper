@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 
 import com.shoppament.R;
+import com.shoppament.data.remote.model.response.BaseResponse;
 import com.shoppament.data.room.database.AppDatabase;
 import com.shoppament.data.room.entity.DataEntity;
 
@@ -70,5 +71,17 @@ public class RegistrationRepository {
         data.add("Tamil Nadu");
 
         return data;
+    }
+
+    /**
+     * send data to API for registration
+     *
+     * @param shopKeeperDataJson
+     * @return
+     */
+    public MutableLiveData<BaseResponse> submitTheRegistration(String shopKeeperDataJson){
+        MutableLiveData<BaseResponse> submitTheRegistrationLiveData = new MutableLiveData<>();
+        submitTheRegistrationLiveData.setValue(new BaseResponse());
+        return submitTheRegistrationLiveData;
     }
 }
