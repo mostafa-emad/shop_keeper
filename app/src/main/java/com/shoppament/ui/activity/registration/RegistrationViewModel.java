@@ -163,8 +163,10 @@ public class RegistrationViewModel extends BaseViewModel {
      *
      * @return
      */
-    private Integer getPerSlotTimeValue() {
-        return perSlotTimeLiveData.getValue();
+    Integer getPerSlotTimeValue() {
+        if(perSlotTimeLiveData.getValue()!=null)
+            return perSlotTimeLiveData.getValue();
+        return 0;
     }
 
     /**

@@ -355,8 +355,29 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
      *
      */
     private void restSlotTimings() {
-        if(startingTimeCalendar == null || endingTimeCalendar == null)
+        if(startingTimeCalendar == null) {
+            showErrorToast(getResources().getString(R.string.error_empty_starting_time));
             return;
+        }
+        if(endingTimeCalendar == null) {
+            showErrorToast(getResources().getString(R.string.error_empty_ending_time));
+            return;
+        }
+        if(averageTimeCalendar == null) {
+            showErrorToast(getResources().getString(R.string.error_empty_average_time));
+            return;
+        }
+        if(registrationBinding.insideCapacityEt.getText().toString().isEmpty()) {
+            showErrorToast(getResources().getString(R.string.error_empty_inside_capacity));
+            return;
+        }
+        if(registrationBinding.outsideCapacityEt.getText().toString().isEmpty()) {
+            showErrorToast(getResources().getString(R.string.error_empty_outside_capacity));
+            return;
+        }
+        if(registrationViewModel.getPerSlotTimeValue()==0) {
+            return;
+        }
 
         registrationViewModel.setSlotsAndTimings(
                 TimeFormatManager.getInstance().getMinutes(startingTimeCalendar),

@@ -14,6 +14,11 @@
     <string name="error_grater_starting_time">Please select time less than ending time</string>
     <string name="error_less_ending_time">Please select time grater than start time</string>
     <string name="error_slots_1">Need to accommodate at least 3 slots. Please reduce Average Time Taken and/or Capacity.</string>
+    <string name="error_empty_starting_time">Please enter starting operational time.</string>
+    <string name="error_empty_ending_time">Please enter ending operational time.</string>
+    <string name="error_empty_average_time">Please enter average time.</string>
+    <string name="error_empty_inside_capacity">Please enter inside capacity.</string>
+    <string name="error_empty_outside_capacity">Please enter outside capacity.</string>
     <string name="msg_error">Please try again you have error</string>
     <string name="msg_network_error">No internet connection</string>
     <string name="title_activity_registration">Shop-Keeper</string>
