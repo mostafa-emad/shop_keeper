@@ -1,7 +1,6 @@
 package com.shoppament.utils.view.dialogs;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -22,6 +21,9 @@ public class OptionsListDialog extends BaseCustomDialog {
 
     public OptionsListDialog(Activity activity, String title, List<String> data, OnTaskCompletedListener onTaskCompletedListener) {
         super(activity, R.layout.layout_options_dialog, onTaskCompletedListener);
+        if(isDialogShown())
+            return;
+
         this.title = title;
         this.data = data;
         init();
@@ -52,13 +54,6 @@ public class OptionsListDialog extends BaseCustomDialog {
             }
         });
         optionsRecycler.setAdapter(optionsRecyclerAdapter);
-
-        alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                alert.dismiss();
-            }
-        });
 
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,7 +1,6 @@
 package com.shoppament.utils.view.dialogs;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
@@ -19,8 +18,10 @@ public class PictureViewDialog extends BaseCustomDialog{
 
     public PictureViewDialog(Activity activity,String path) {
         super(activity, R.layout.layout_picture_dialog, null);
-        this.path = path;
+        if(isDialogShown())
+            return;
 
+        this.path = path;
         init();
     }
 
@@ -36,13 +37,6 @@ public class PictureViewDialog extends BaseCustomDialog{
 
         alert.show();
         alert.getWindow().setLayout(pxFromDp(300), ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                alert.dismiss();
-            }
-        });
 
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override

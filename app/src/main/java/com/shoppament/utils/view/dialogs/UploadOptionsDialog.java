@@ -1,7 +1,6 @@
 package com.shoppament.utils.view.dialogs;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +14,15 @@ public class UploadOptionsDialog extends BaseCustomDialog {
 
     public UploadOptionsDialog(Activity activity) {
         super(activity, R.layout.layout_upload_options_dialog, null);
+        if(isDialogShown())
+            return;
         init();
     }
 
     public UploadOptionsDialog(Activity activity, OnTaskCompletedListener onTaskCompletedListener) {
         super(activity, R.layout.layout_upload_options_dialog, onTaskCompletedListener);
+        if(isDialogShown())
+            return;
         init();
     }
 
@@ -34,13 +37,6 @@ public class UploadOptionsDialog extends BaseCustomDialog {
 
         alert.show();
         alert.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                alert.dismiss();
-            }
-        });
 
         cameraOptionTxt.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -32,7 +32,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class LocationMapDialog extends BaseCustomDialog implements OnMapReadyCallback {
+public class LocationMapDialog extends BaseCustomDialog
+        implements DialogInterface.OnDismissListener, OnMapReadyCallback {
 
     private AddressLocationModel addressLocationModel;
     private FragmentManager fragmentManager;
@@ -44,6 +45,8 @@ public class LocationMapDialog extends BaseCustomDialog implements OnMapReadyCal
     public LocationMapDialog(Activity activity, FragmentManager fragmentManager,
                              AddressLocationModel addressLocationModel,OnTaskCompletedListener onTaskCompletedListener) {
         super(activity, R.layout.layout_map_dialog, onTaskCompletedListener);
+        if(isDialogShown())
+            return;
         this.fragmentManager = fragmentManager;
         this.addressLocationModel = addressLocationModel;
         init();
@@ -59,16 +62,6 @@ public class LocationMapDialog extends BaseCustomDialog implements OnMapReadyCal
         alert.show();
         alert.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                if(supportMapFragment != null){
-                    fragmentManager.beginTransaction().remove(supportMapFragment).commit();
-                }
-                alert.dismiss();
-            }
-        });
-
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +70,15 @@ public class LocationMapDialog extends BaseCustomDialog implements OnMapReadyCal
                 alert.dismiss();
             }
         });
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialogInterface) {
+        super.onDismiss(dialogInterface);
+        if(supportMapFragment != null){
+            fragmentManager.beginTransaction().remove(supportMapFragment).commit();
+        }
+        alert.dismiss();
     }
 
     private void initGoogleMap() {
