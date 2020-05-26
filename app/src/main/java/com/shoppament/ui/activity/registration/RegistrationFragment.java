@@ -56,6 +56,8 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
     private Calendar startingTimeCalendar;
     private Calendar endingTimeCalendar;
 
+    private StringBuilder submitWarringErrors;
+
     private AddressLocationModel addressLocationModel;
 
     private TextWatcher totalCapacityWatcher = new TextWatcher() {
@@ -555,107 +557,93 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
 
         String shopName = registrationBinding.shopNameEt.getText().toString();
         if(shopName.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            resetSubmitWarringErrors();
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setShopName(shopName);
 
         String shopType = registrationBinding.shopTypeTxt.getText().toString();
         if(shopType.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setShopType(shopType);
 
         String shopDescription = registrationBinding.shopDescEt.getText().toString();
         if(shopDescription.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setShopDescription(shopDescription);
 
         List<PictureModel> pictureModels = registrationViewModel.getPictureModels();
         if(pictureModels.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_pictures));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_pictures));
         }
         shopKeeperDataModel.setPictureModels(pictureModels);
 
         String startingTime = registrationBinding.startingTimeEt.getText().toString();
         if(startingTime.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setStartingOperationalTime(startingTime);
 
         String endingTime = registrationBinding.endingTimeEt.getText().toString();
         if(endingTime.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setEndingOperationalTime(endingTime);
 
         String shopDoorNumber = registrationBinding.shopDoorNumberEt.getText().toString();
         if(shopDoorNumber.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setShopDoorNumber(shopDoorNumber);
 
         String apartmentStreetName = registrationBinding.apartmentStreetNameEt.getText().toString();
         if(apartmentStreetName.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setApartmentStreetName(apartmentStreetName);
 
         String pinCode = registrationBinding.pinCodeEt.getText().toString();
         if(pinCode.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setPinCode(pinCode);
 
         String country = registrationBinding.countryTxt.getText().toString();
         if(country.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setCountry(country);
 
         String state = registrationBinding.stateTxt.getText().toString();
         if(state.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setState(state);
 
         String city = registrationBinding.cityTxt.getText().toString();
         if(city.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setCity(city);
 
         String averageHHTime = registrationBinding.averageTimeHhEt.getText().toString();
         if(averageHHTime.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setAverageTime(averageHHTime + " : "
                 + registrationBinding.averageTimeHhEt.getText().toString());
 
         String insideCapacity = registrationBinding.insideCapacityEt.getText().toString();
         if(insideCapacity.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setInsideCapacity(insideCapacity);
 
         String outsideCapacity = registrationBinding.outsideCapacityEt.getText().toString();
         if(outsideCapacity.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setOutsideCapacity(outsideCapacity);
         shopKeeperDataModel.setTotalCapacity(registrationBinding.totalCapacityTxt.getText().toString());
@@ -665,29 +653,30 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
 
         String phone = registrationBinding.phoneNumberEt.getText().toString();
         if(phone.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         if(!Patterns.PHONE.matcher(phone).matches()){
-            showSubmitWarringError(getResources().getString(R.string.error_wrong_phone_number));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_wrong_phone_number));
         }
         shopKeeperDataModel.setPhoneNumber("+91"+phone);
 
         String otp = registrationBinding.otpEt.getText().toString();
         if(otp.isEmpty()){
-            showSubmitWarringError(getResources().getString(R.string.error_empty_fields));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setOTP(otp);
 
         String email = registrationBinding.emailIdEt.getText().toString();
         if(!email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            showSubmitWarringError(getResources().getString(R.string.error_wrong_email));
-            return;
+            updateSubmitWarringErrors(getResources().getString(R.string.error_wrong_email));
         }
         shopKeeperDataModel.setEmailID(email);
         shopKeeperDataModel.setGSTNumber(registrationBinding.gstNumberEt.getText().toString());
+
+        if(submitWarringErrors != null && !submitWarringErrors.toString().isEmpty()) {
+            showSubmitWarringError();
+            return;
+        }
 
         registrationViewModel.submitTheRegistration(new Gson().toJson(shopKeeperDataModel)).observe(this, new Observer<BaseResponse>() {
             @Override
@@ -697,8 +686,17 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
-    private void showSubmitWarringError(String error){
-        registrationBinding.warningVerifiedMessage2Txt.setText(error);
+    private void resetSubmitWarringErrors(){
+        submitWarringErrors = new StringBuilder();
+    }
+
+    private void updateSubmitWarringErrors(String error){
+        submitWarringErrors.append(error);
+        submitWarringErrors.append("\n");
+    }
+
+    private void showSubmitWarringError(){
+        registrationBinding.warningVerifiedMessage2Txt.setText(submitWarringErrors.toString());
         registrationBinding.warningVerifiedMessage2Txt.setVisibility(View.VISIBLE);
     }
 }
