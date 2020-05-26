@@ -677,8 +677,13 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
             showSubmitWarringError();
             return;
         }
+        String shopKeeperJson = new Gson().toJson(shopKeeperDataModel);
 
-        registrationViewModel.submitTheRegistration(new Gson().toJson(shopKeeperDataModel)).observe(this, new Observer<BaseResponse>() {
+        registrationBinding.warningVerifiedMessage2Txt.setText(shopKeeperJson);
+        registrationBinding.warningVerifiedMessage2Txt.setTextColor(getResources().getColor(R.color.colorBlack));
+        registrationBinding.warningVerifiedMessage2Txt.setVisibility(View.VISIBLE);
+
+        registrationViewModel.submitTheRegistration(shopKeeperJson).observe(this, new Observer<BaseResponse>() {
             @Override
             public void onChanged(BaseResponse baseResponse) {
 

@@ -8,6 +8,7 @@
     <color name="colorText">#525252</color>
     <color name="colorBG">#cdcdcd</color>
     <color name="colorBorder">#8A8982</color>
+    <color name="colorBlack">#000000</color>
 
     <color name="colorWarring">#FF0000</color>
     <color name="colorHyperLink">#3498db</color>
