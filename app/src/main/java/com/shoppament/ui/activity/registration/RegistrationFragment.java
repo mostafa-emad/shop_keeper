@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 import com.shoppament.R;
 import com.shoppament.data.models.AddressLocationModel;
@@ -288,12 +289,7 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
             showLocationErrors(getResources().getString(R.string.error_gps_not_enabled));
             return;
         }
-        addressLocationModel = new AddressLocationModel();
-        addressLocationModel.setCountry(registrationBinding.countryTxt.getText().toString());
-        addressLocationModel.setCity(registrationBinding.cityTxt.getText().toString());
-        addressLocationModel.setState(registrationBinding.stateTxt.getText().toString());
-        addressLocationModel.setPostalCode(registrationBinding.pinCodeEt.getText().toString());
-        addressLocationModel.setAddressLine(registrationBinding.apartmentStreetNameEt.getText().toString());
+        updateAddressLocation();
         if(addressLocationModel.getLocation(activity)!=null){
             registrationBinding.selectLocationBtn.setText(getResources().getString(R.string.change_location_btn));
         }
@@ -316,6 +312,17 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
                         showLocationErrors(message);
                     }
                 });
+    }
+
+    private void updateAddressLocation() {
+        if(addressLocationModel == null) {
+            addressLocationModel = new AddressLocationModel();
+        }
+        addressLocationModel.setCountry(registrationBinding.countryTxt.getText().toString());
+        addressLocationModel.setCity(registrationBinding.cityTxt.getText().toString());
+        addressLocationModel.setState(registrationBinding.stateTxt.getText().toString());
+        addressLocationModel.setPostalCode(registrationBinding.pinCodeEt.getText().toString());
+        addressLocationModel.setAddressLine(registrationBinding.apartmentStreetNameEt.getText().toString());
     }
 
     private void showLocationErrors(String message) {
@@ -556,17 +563,17 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         ShopKeeperDataModel shopKeeperDataModel = new ShopKeeperDataModel();
 
         String shopName = registrationBinding.shopNameEt.getText().toString();
+        resetSubmitWarringErrors();
+
         if(shopName.isEmpty()){
-            resetSubmitWarringErrors();
             updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setShopName(shopName);
 
-        String shopType = registrationBinding.shopTypeTxt.getText().toString();
-        if(shopType.isEmpty()){
+        if(registrationViewModel.getShopTypesList().isEmpty()){
             updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
-        shopKeeperDataModel.setShopType(shopType);
+        shopKeeperDataModel.setShopTypeList(registrationViewModel.getShopTypesList());
 
         String shopDescription = registrationBinding.shopDescEt.getText().toString();
         if(shopDescription.isEmpty()){
@@ -627,13 +634,21 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
             updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setCity(city);
-
+        //Location
+        updateAddressLocation();
+        LatLng latLng = addressLocationModel.getLocation(activity);
+        if(latLng != null){
+            shopKeeperDataModel.setLatitude(latLng.latitude);
+            shopKeeperDataModel.setLongitude(latLng.longitude);
+        }else{
+            updateSubmitWarringErrors(getResources().getString(R.string.error_empty_location));
+        }
         String averageHHTime = registrationBinding.averageTimeHhEt.getText().toString();
         if(averageHHTime.isEmpty()){
             updateSubmitWarringErrors(getResources().getString(R.string.error_empty_fields));
         }
         shopKeeperDataModel.setAverageTime(averageHHTime + " : "
-                + registrationBinding.averageTimeHhEt.getText().toString());
+                + registrationBinding.averageTimeMmEt.getText().toString());
 
         String insideCapacity = registrationBinding.insideCapacityEt.getText().toString();
         if(insideCapacity.isEmpty()){
@@ -648,8 +663,6 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
         shopKeeperDataModel.setOutsideCapacity(outsideCapacity);
         shopKeeperDataModel.setTotalCapacity(registrationBinding.totalCapacityTxt.getText().toString());
         shopKeeperDataModel.setPerSlotTime(registrationBinding.perSlotTimeTxt.getText().toString());
-
-        //Location
 
         String phone = registrationBinding.phoneNumberEt.getText().toString();
         if(phone.isEmpty()){

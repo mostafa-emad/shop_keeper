@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ShopKeeperDataModel extends BaseModel {
     private String shopName;
-    private String shopType;
+    private List<String> shopTypeList;
     private String shopDescription;
     private List<PictureModel> pictureModels;
 
@@ -41,12 +41,12 @@ public class ShopKeeperDataModel extends BaseModel {
         this.shopName = shopName;
     }
 
-    public String getShopType() {
-        return shopType;
+    public List<String> getShopTypeList() {
+        return shopTypeList;
     }
 
-    public void setShopType(String shopType) {
-        this.shopType = shopType;
+    public void setShopTypeList(List<String> shopTypeList) {
+        this.shopTypeList = shopTypeList;
     }
 
     public String getShopDescription() {
